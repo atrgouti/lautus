@@ -9,7 +9,7 @@ function Home() {
       <Navbar />
       <img
         src={cover}
-        style={{ width: window.outerWidth > 400 ? "100%" : "150%" }}
+        style={{ width: window.outerWidth > 400 ? "100%" : "200%" }}
         alt=""
       />
     </>

@@ -37,7 +37,7 @@ function Navbar() {
           <Link to={"/"}>Contact Us</Link>
         </ul>
         <div className={styles.logo}>
-          <img src={Logo} alt="logo" className={styles.logo} />
+          <img src={Logo} alt="logo" />
         </div>
         <div className={styles.searchCart}>
           <img src={searchIcon} alt="" className={styles.laptopSearchIcon} />
