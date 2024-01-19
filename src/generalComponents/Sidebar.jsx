@@ -14,6 +14,7 @@ function Sidebar() {
         className={styles.closeMenuIcon}
         alt=""
       />
+      <h1>hello</h1>
     </div>
   );
 }
