@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Logo from "/logo.png";
+import Logo from "/logo2.png";
 import searchIcon from "/search.svg";
 import shoppingCart from "/shoppingCart.svg";
 import Heart from "/heart.svg";
