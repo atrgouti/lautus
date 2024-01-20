@@ -54,7 +54,10 @@
 }
 .links li a {
   text-decoration: none;
-  color: black;
+  color: rgb(58, 58, 58);
   font-weight: 400;
   font-size: 22px;
+}
+.subAnime {
+  margin-left: 20px;
 }

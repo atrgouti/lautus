@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import { themeContext } from "./ThemeContext";
@@ -7,6 +7,7 @@ import rightArrow from "/rightArrow.svg";
 
 function Sidebar() {
   const { activeSide, setActiveSide } = useContext(themeContext);
+  const [showSubAnime, setShowSubAnime] = useState(false);
 
   return (
     <div className={activeSide ? styles.sideBar : styles.active}>
@@ -20,24 +21,38 @@ function Sidebar() {
         <ul>
           <li>
             <Link to={"/"}>Home</Link>
-            <img src={rightArrow} alt="" />
           </li>
-          <div className={styles.line}></div>
+          <li onClick={() => setShowSubAnime(!showSubAnime)}>
+            <Link to={"/"}>Anime Collections</Link>
+            <img
+              src={rightArrow}
+              alt=""
+              style={{ transform: "rotate(90deg)" }}
+            />
+          </li>
+          {showSubAnime && (
+            <ul className={styles.subAnime}>
+              <li>One piece</li>
+              <li>Dragon Ball</li>
+              <li>Hunter X Hunter</li>
+              <li>Death Note</li>
+            </ul>
+          )}
           <li>
             <Link to={"/"}>Matchy Matchy</Link>
-            <img src={rightArrow} alt="" />
           </li>
-          <div className={styles.line}></div>
           <li>
-            <Link to={"/"}>Anime Collections</Link>
-            <img src={rightArrow} alt="" />
+            <Link to={"/"}>TV Show Collection</Link>
           </li>
-          <div className={styles.line}></div>
           <li>
-            <Link to={"/"}>Rick & Morty</Link>
-            <img src={rightArrow} alt="" />
+            <Link to={"/"}>Musical Bands</Link>
           </li>
-          <div className={styles.line}></div>
+          <li>
+            <Link to={"/"}>GYM</Link>
+          </li>
+          <li>
+            <Link to={"/"}>Custome Design</Link>
+          </li>
         </ul>
       </div>
     </div>
