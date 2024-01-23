@@ -11,8 +11,24 @@
   width: 90%;
   margin: 0px auto;
   max-width: 1700px;
-  /* position: relative; */
 }
+
+.fixedNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  margin: 0px auto;
+  position: fixed;
+  background-color: black;
+  z-index: 30;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 .ul {
   display: flex;
   list-style: none;
@@ -95,5 +111,9 @@ nav .logo img {
   }
   .laptopSearchIcon {
     display: none;
+  }
+  .fixedNav {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }

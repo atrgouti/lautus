@@ -1,0 +1,104 @@
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.services {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 30px;
+}
+.services img {
+  height: 50px;
+}
+.service {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.service p {
+  margin-top: 20px;
+}
+.logo {
+  margin-top: 20px;
+}
+.logo img {
+  height: 80px;
+}
+.line {
+  height: 1px;
+  width: 80%;
+  margin: 30px auto;
+  background-color: white;
+}
+.infos {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  color: white;
+}
+.infos ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  font-weight: 400;
+  font-size: 15px;
+}
+.infos a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 0px;
+}
+.title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.social {
+  width: 80%;
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.social img {
+  height: 40px;
+  margin: 10px;
+  transition: 0.2s ease-in;
+}
+.social img:hover {
+  cursor: pointer;
+  scale: 1.2;
+}
+
+@media screen and (max-width: 900px) {
+  .services {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .services img {
+    height: 30px;
+  }
+  .service {
+    margin-top: 30px;
+  }
+  .infos {
+    flex-direction: column;
+    align-items: center;
+  }
+  .inf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .infos ul {
+    margin-bottom: 30px;
+    align-items: center;
+  }
+}

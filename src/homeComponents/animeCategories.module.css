@@ -1,5 +1,5 @@
 .animeCategories {
-  height: 100vh;
+  height: auto;
   width: 100%;
   background-color: black;
   transform: translateY(-5px);
@@ -12,16 +12,26 @@
 .collections {
   display: flex;
   width: 80%;
-  margin: 20px auto;
+  margin: 0px auto;
   flex-wrap: wrap;
   justify-content: space-between;
   max-width: 1700px;
+  padding-bottom: 50px;
+  margin-top: 20px;
 }
 .collection {
   width: 20%;
   min-width: 100px;
   height: auto;
   margin: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.collection:hover {
+  scale: 1.1;
+}
+.collection h3 {
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 700px) {

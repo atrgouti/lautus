@@ -12,13 +12,14 @@ import ActiveFilter from "./ActiveFilter";
 import { themeContext } from "./ThemeContext";
 import { useContext } from "react";
 
-function Navbar() {
-  const { activeSide, setActiveSide } = useContext(themeContext);
+function Navbar({ isFixed }) {
+  const { setActiveSide } = useContext(themeContext);
 
   return (
     <nav className={styles.nav}>
-      {activeSide && <ActiveFilter />}
-      <div className={styles.navArea}>
+      {/* {activeSide && <ActiveFilter />} */}
+      {isFixed && <div style={{ height: "100px", width: "100%" }}></div>}
+      <div className={isFixed ? styles.fixedNav : styles.navArea}>
         <div className={styles.mobileOpenMenuSearch}>
           <img
             className={styles.openMenu}
@@ -30,10 +31,12 @@ function Navbar() {
         </div>
         <ul className={styles.ul}>
           <Link to={"/"}>Home</Link>
-          <Link to={"/"}>Hoodies</Link>
-          <Link to={"/"}>Sweatshirts</Link>
-          <Link to={"/"}>T-Shirts</Link>
-          <Link to={"/"}>Custom Design</Link>
+          <Link to={"/"}>Anime</Link>
+          <Link to={"/"}>Musical Bands</Link>
+          <Link to={"/"}>Cartoon</Link>
+          <Link to={"/"}>Matchy Matchy</Link>
+          <Link to={"/"}>TV Show</Link>
+          <Link to={"/"}>GYM</Link>
           <Link to={"/"}>Contact Us</Link>
         </ul>
         <div className={styles.logo}>

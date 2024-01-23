@@ -45,6 +45,9 @@ function Sidebar() {
             <Link to={"/"}>TV Show Collection</Link>
           </li>
           <li>
+            <Link to={"/"}>Cartoon</Link>
+          </li>
+          <li>
             <Link to={"/"}>Musical Bands</Link>
           </li>
           <li>

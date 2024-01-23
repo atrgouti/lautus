@@ -8,7 +8,7 @@ function AnimeCategories() {
   // const animecollections = [{ bilal: "bilal" }];
   return (
     <div className={styles.animeCategories}>
-      <h1>Anime Collections</h1>
+      <h1>Anime Categories</h1>
       <div className={styles.collections}>
         <div className={styles.collection}>
           <img src={onePiece} style={{ width: "100%" }} alt="" />

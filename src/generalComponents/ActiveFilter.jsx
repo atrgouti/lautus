@@ -2,9 +2,9 @@ function ActiveFilter() {
   return (
     <div
       style={{
-        height: "105vh",
+        height: "110vh",
         width: "100%",
-        position: "absolute",
+        position: "fixed",
         backgroundColor: "black",
         opacity: 0.8,
         zIndex: 70,

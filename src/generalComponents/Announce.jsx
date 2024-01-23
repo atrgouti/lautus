@@ -10,9 +10,7 @@ function Announce() {
           backgroundColor: "",
         }}
       >
-        <p style={{ margin: "20px 10px" }}>
-          Free Shipping To All Moroccan Cities
-        </p>
+        <p style={{ margin: "20px 10px" }}>Delivery All Over Morocco</p>
         <img style={{ height: "30px" }} src={shippingLogo} alt="" />
       </div>
     </div>
