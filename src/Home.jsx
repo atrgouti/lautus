@@ -52,19 +52,19 @@ function Home() {
   const [mosucalBrands, setMosucalBrands] = useState([
     {
       id: 1,
-      image: "./src/productImages/tupac-white-tshirt.jpg",
+      image: "./productImages/tupac-white-tshirt.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
     {
       id: 2,
-      image: "./src/productImages/tupac2.jpg",
+      image: "./productImages/tupac2.jpg",
       title: "Tupac Black T-Shirt",
       price: 149,
     },
     {
       id: 3,
-      image: "./src/productImages/tupac-white-tshirt.jpg",
+      image: "./productImages/tupac-white-tshirt.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
