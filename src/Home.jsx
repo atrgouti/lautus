@@ -52,25 +52,29 @@ function Home() {
   const [mosucalBrands, setMosucalBrands] = useState([
     {
       id: 1,
-      image: "./productImages/tupac-white-tshirt.jpg",
+      image:
+        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
     {
       id: 2,
-      image: "./productImages/tupac2.jpg",
+      image:
+        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
       title: "Tupac Black T-Shirt",
       price: 149,
     },
     {
       id: 3,
-      image: "./productImages/tupac-white-tshirt.jpg",
+      image:
+        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
     {
       id: 4,
-      image: "./src/productImages/tupac-white-tshirt.jpg",
+      image:
+        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
