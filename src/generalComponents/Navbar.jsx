@@ -11,9 +11,10 @@ import ActiveFilter from "./ActiveFilter";
 //importing
 import { themeContext } from "./ThemeContext";
 import { useContext } from "react";
+import ItemsCard from "./ItemsCard";
 
 function Navbar({ isFixed }) {
-  const { setActiveSide } = useContext(themeContext);
+  const { setActiveSide, setActiveCard } = useContext(themeContext);
 
   return (
     <nav className={styles.nav}>
@@ -37,7 +38,6 @@ function Navbar({ isFixed }) {
           <Link to={"/"}>Matchy Matchy</Link>
           <Link to={"/"}>TV Show</Link>
           <Link to={"/"}>GYM</Link>
-          <Link to={"/"}>Contact Us</Link>
         </ul>
         <div className={styles.logo}>
           <img src={Logo} alt="logo" />
@@ -45,7 +45,10 @@ function Navbar({ isFixed }) {
         <div className={styles.searchCart}>
           <img src={searchIcon} alt="" className={styles.laptopSearchIcon} />
           <img src={Heart} alt="" />
-          <div className={styles.shoppingcart}>
+          <div
+            className={styles.shoppingcart}
+            onClick={() => setActiveCard(true)}
+          >
             <img src={shoppingCart} alt="" />
             <div
               style={{
@@ -58,6 +61,7 @@ function Navbar({ isFixed }) {
             <p style={{ padding: "10px" }}>0 MAD</p>
           </div>
           <img
+            onClick={() => setActiveCard(true)}
             src={shoppingCart}
             className={styles.mobileShoppingCard}
             alt=""
@@ -65,6 +69,7 @@ function Navbar({ isFixed }) {
         </div>
       </div>
       <Sidebar />
+      <ItemsCard />
     </nav>
   );
 }

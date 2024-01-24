@@ -13,7 +13,7 @@ import { themeContext } from "./generalComponents/ThemeContext";
 
 function Home() {
   const [windowWidth, setWindowWidth] = useState(window.outerWidth);
-  const { activeSide, setActiveSide } = useContext(themeContext);
+  const { activeSide, setActiveSide, activeCard } = useContext(themeContext);
   const [isFixed, setIsFixed] = useState(false);
 
   const handleResize = () => {
@@ -52,29 +52,25 @@ function Home() {
   const [mosucalBrands, setMosucalBrands] = useState([
     {
       id: 1,
-      image:
-        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
+      image: "./src/productImages/tupac-white-tshirt.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
     {
       id: 2,
-      image:
-        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
+      image: "./src/productImages/tupac-white-tshirt.jpg",
       title: "Tupac Black T-Shirt",
       price: 149,
     },
     {
       id: 3,
-      image:
-        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
+      image: "./src/productImages/tupac-white-tshirt.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
     {
       id: 4,
-      image:
-        "https://byclccpokszkbxfgiwhw.supabase.co/storage/v1/object/public/ProductImages/bags-2-2.jpg",
+      image: "./src/productImages/tupac-white-tshirt.jpg",
       title: "Tupac White T-Shirt",
       price: 149,
     },
@@ -89,7 +85,7 @@ function Home() {
     },
     {
       id: 2,
-      image: "./src/productImages/dragon.jpg",
+      image: "./src/productImages/darwin.jpg",
       title: "Tupac Black T-Shirt",
       price: 149,
     },
@@ -133,28 +129,54 @@ function Home() {
       price: 149,
     },
   ]);
-  const [animeBest, setAnimeBest] = useState([
+  const [tvShow, setTvShow] = useState([
     {
       id: 1,
-      image: "./src/productImages/anime1.jpg",
+      image: "./src/productImages/friends.jpg",
       title: "Darwin T-Shirt",
       price: 149,
     },
     {
       id: 2,
-      image: "./src/productImages/anime2.jpg",
+      image: "./src/productImages/friends.jpg",
       title: "Tupac Black T-Shirt",
       price: 149,
     },
     {
       id: 3,
-      image: "./src/productImages/anime3.jpg",
+      image: "./src/productImages/friends.jpg",
       title: "Darwin T-Shirt",
       price: 149,
     },
     {
       id: 4,
-      image: "./src/productImages/anime1.jpg",
+      image: "./src/productImages/friends.jpg",
+      title: "Darwin T-Shirt",
+      price: 149,
+    },
+  ]);
+  const [gym, setGym] = useState([
+    {
+      id: 1,
+      image: "./src/productImages/gym.jpg",
+      title: "Darwin T-Shirt",
+      price: 149,
+    },
+    {
+      id: 2,
+      image: "./src/productImages/gym.jpg",
+      title: "Tupac Black T-Shirt",
+      price: 149,
+    },
+    {
+      id: 3,
+      image: "./src/productImages/gym.jpg",
+      title: "Darwin T-Shirt",
+      price: 149,
+    },
+    {
+      id: 4,
+      image: "./src/productImages/gym.jpg",
       title: "Darwin T-Shirt",
       price: 149,
     },
@@ -162,7 +184,7 @@ function Home() {
 
   return (
     <>
-      {activeSide && <ActiveFilter />}
+      {(activeSide || activeCard) && <ActiveFilter />}
       <div className={style.home}>
         <Announce></Announce>
         <Navbar isFixed={isFixed} />
@@ -194,8 +216,8 @@ function Home() {
             data={matchy}
             bg={"white"}
           />
-          <ProductsCarousel data={animeBest} header={"TV Shows"} bg={"white"} />
-          <ProductsCarousel data={animeBest} header={"GYM"} bg={"white"} />
+          <ProductsCarousel data={tvShow} header={"TV Shows"} bg={"white"} />
+          <ProductsCarousel data={gym} header={"GYM"} bg={"white"} />
         </div>
         <Footer />
       </div>
