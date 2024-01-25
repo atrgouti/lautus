@@ -11,43 +11,8 @@ import { useEffect, useState, useContext } from "react";
 //importing
 import { themeContext } from "./generalComponents/ThemeContext";
 
-function Home() {
-  const [windowWidth, setWindowWidth] = useState(window.outerWidth);
-  const { activeSide, setActiveSide, activeCard } = useContext(themeContext);
-  const [isFixed, setIsFixed] = useState(false);
-
-  const handleResize = () => {
-    setWindowWidth(window.outerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      // You can adjust the threshold value based on your design
-      const threshold = 400;
-
-      if (scrollY > threshold && !isFixed) {
-        setIsFixed(true);
-      } else if (scrollY <= threshold && isFixed) {
-        setIsFixed(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isFixed]);
+function Home({ isFixed }) {
+  const { activeSide, activeSearch, activeCard } = useContext(themeContext);
 
   const [mosucalBrands, setMosucalBrands] = useState([
     {
@@ -184,14 +149,14 @@ function Home() {
 
   return (
     <>
-      {(activeSide || activeCard) && <ActiveFilter />}
+      {(activeSide || activeCard || activeSearch) && <ActiveFilter />}
       <div className={style.home}>
         <Announce></Announce>
         <Navbar isFixed={isFixed} />
         <img
           src={cover}
           style={{
-            width: windowWidth > 50 ? "100%" : "200%",
+            width: "100%",
             margin: "0px",
             padding: "0px",
           }}

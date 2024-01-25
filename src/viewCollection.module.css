@@ -1,0 +1,51 @@
+.adjust {
+  width: 80%;
+  margin: 0px auto;
+  margin-top: 50px;
+}
+.adjust {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adjust h2 {
+  margin-left: 20px;
+}
+.adjust select {
+  padding: 10px;
+  border: none;
+}
+.allProducts {
+  width: 80%;
+  margin: 0px auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: start;
+}
+.product {
+  height: auto;
+  width: 22%;
+  min-width: 250px;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+.product img {
+  width: 100%;
+}
+.product .title {
+  text-align: center;
+  margin: 10px;
+}
+
+@media screen and (max-width: 900px) {
+  .allProducts {
+    margin-top: 30px;
+    width: 90%;
+  }
+  .product {
+    margin: 10px auto;
+  }
+}

@@ -1,0 +1,53 @@
+.search {
+  min-height: 20vh;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: black;
+  z-index: 80;
+  transform: translateY(-100%);
+  transition: 0.3s ease;
+}
+.active {
+  min-height: 20vh;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: black;
+  z-index: 80;
+  transition: 0.3s ease;
+}
+.closeMenu {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  cursor: pointer;
+}
+.area {
+  width: 90%;
+  margin: 0px auto;
+  margin-top: 40px;
+}
+.area h2 {
+  margin-top: 40px;
+}
+.area input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+}
+
+.area input:focus {
+  outline: none;
+}
+
+.examples {
+  color: gray;
+  margin: 20px 0px;
+}

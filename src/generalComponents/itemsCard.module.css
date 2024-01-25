@@ -1,6 +1,6 @@
 .itemsCard {
   position: fixed;
-  top: 0px;
+  top: 0;
   right: 0;
   height: 100vh;
   width: 25%;
@@ -13,7 +13,7 @@
 }
 .active {
   position: fixed;
-  top: 0px;
+  top: 0;
   right: 0;
   height: 100vh;
   width: 25%;
@@ -56,5 +56,11 @@
 @media screen and (max-width: 1200px) {
   .itemsCard {
     width: 80%;
+  }
+  .active {
+    width: 80%;
+  }
+  .closeMenuIcon {
+    height: 20px;
   }
 }
