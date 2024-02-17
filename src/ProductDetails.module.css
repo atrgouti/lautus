@@ -1,0 +1,171 @@
+.workingArea {
+  width: 80%;
+  margin: 20px auto;
+}
+.main {
+  width: 100%;
+  display: flex;
+  margin-top: 50px;
+  gap: 30px;
+}
+.images {
+  width: 50%;
+  /* background-color: pink; */
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+.sub {
+  width: 20%;
+}
+.sub img {
+  width: 100%;
+  cursor: pointer;
+}
+.bg {
+  width: 80%;
+  position: relative;
+}
+.bg img {
+  width: 100%;
+}
+.infos {
+  width: 50%;
+  color: rgb(41, 41, 41);
+}
+.infos .price {
+  margin-top: 20px;
+  color: red;
+}
+.infos .color {
+  margin-top: 30px;
+  display: flex;
+}
+.infos .size {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.infos .size p {
+  font-size: 18px;
+  margin: 0px 5px;
+  border: 1px solid rgb(228, 228, 228);
+  padding: 5px 7px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.infos .quantity {
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.infos .quantity p {
+  margin: 10px;
+}
+.infos .order {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px solid orangered;
+  cursor: pointer;
+  background-color: orangered;
+  font-size: 20px;
+  color: white;
+}
+.addToCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  cursor: pointer;
+  background-color: white;
+  font-size: 20px;
+  color: black;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.features img {
+  height: 20px;
+}
+
+.description {
+  width: 100%;
+  margin-top: 40px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+}
+.desc {
+  color: gray;
+  padding-left: 20px;
+  padding-bottom: 30px;
+}
+.leftArrow {
+  display: none;
+}
+
+.rightArrow {
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .main {
+    flex-direction: column;
+  }
+  .workingArea {
+    width: 90%;
+    overflow-x: hidden;
+  }
+  .images {
+    width: 100%;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+  .infos {
+    width: 100%;
+  }
+  .title {
+    font-size: 24px;
+  }
+  .price {
+    font-size: 22px;
+  }
+  .sub {
+    width: 100%;
+    display: flex;
+  }
+  .sub img {
+    width: 80px;
+    cursor: pointer;
+  }
+  .leftArrow {
+    display: block;
+    height: 32px;
+    position: absolute;
+    right: 48%;
+    top: 40%;
+  }
+  .rightArrow {
+    display: block;
+    height: 30px;
+    position: absolute;
+    left: 48%;
+    top: 40%;
+  }
+
+  .bg {
+    width: 100%;
+  }
+}

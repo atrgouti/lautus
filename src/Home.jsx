@@ -3,15 +3,28 @@ import Announce from "./generalComponents/Announce";
 import Navbar from "./generalComponents/Navbar";
 import AnimeCategories from "./homeComponents/AnimeCategories";
 import ProductsCarousel from "./homeComponents/ProductsCarousel";
-import cover from "/cove.jpg";
+import cover from "/bagi.jpg";
 import Footer from "./generalComponents/Footer";
 import ActiveFilter from "./generalComponents/ActiveFilter";
 import { useEffect, useState, useContext } from "react";
+import { apiLautusProducts } from "./api/apiLautusProducts";
 
 //importing
 import { themeContext } from "./generalComponents/ThemeContext";
 
 function Home({ isFixed }) {
+  const [loding, setIsLoading] = useState(false);
+  const [mydata, setMyData] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      let res = await apiLautusProducts("anime", setIsLoading);
+      setMyData(mydata);
+      console.log(res);
+    }
+    getData();
+  }, []);
+
   const { activeSide, activeSearch, activeCard } = useContext(themeContext);
 
   const [mosucalBrands, setMosucalBrands] = useState([
@@ -39,12 +52,24 @@ function Home({ isFixed }) {
       title: "Tupac White T-Shirt",
       price: 149,
     },
+    {
+      id: 5,
+      image: "./src/productImages/tupac-white-tshirt.jpg",
+      title: "Tupac White T-Shirt",
+      price: 149,
+    },
+    {
+      id: 6,
+      image: "./src/productImages/tupac-white-tshirt.jpg",
+      title: "Tupac White T-Shirt",
+      price: 149,
+    },
   ]);
 
   const [CartoonCollection, setCartoonCollection] = useState([
     {
       id: 1,
-      image: "./src/productImages/darwin.jpg",
+      image: "./src/productImages/onepiece.jpg",
       title: "Darwin T-Shirt",
       price: 149,
     },

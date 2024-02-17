@@ -20,7 +20,9 @@ function Sidebar() {
       <div className={styles.links}>
         <ul>
           <li>
-            <Link to={"/"}>Home</Link>
+            <Link to={"/"} onClick={() => setActiveSide(false)}>
+              Home
+            </Link>
           </li>
           <li onClick={() => setShowSubAnime(!showSubAnime)}>
             <Link to={"/"}>Anime Collections</Link>
@@ -32,26 +34,53 @@ function Sidebar() {
           </li>
           {showSubAnime && (
             <ul className={styles.subAnime}>
-              <li>One piece</li>
+              <Link
+                to={"/collection/anime/onepiece"}
+                onClick={() => setActiveSide(false)}
+              >
+                <li>One piece</li>
+              </Link>
               <li>Dragon Ball</li>
               <li>Hunter X Hunter</li>
               <li>Death Note</li>
             </ul>
           )}
           <li>
-            <Link to={"/"}>Matchy Matchy</Link>
+            <Link
+              to={"/collection/matchy-matchy"}
+              onClick={() => setActiveSide(false)}
+            >
+              Matchy Matchy
+            </Link>
           </li>
           <li>
-            <Link to={"/"}>TV Show Collection</Link>
+            <Link
+              to={"/collection/tv-show"}
+              onClick={() => setActiveSide(false)}
+            >
+              TV Show Collection
+            </Link>
           </li>
           <li>
-            <Link to={"/"}>Cartoon</Link>
+            <Link
+              to={"/collection/cartoon"}
+              onClick={() => setActiveSide(false)}
+            >
+              Cartoon
+            </Link>
           </li>
           <li>
-            <Link to={"/"}>Musical Bands</Link>
+            <Link
+              to={"/collection/musical-bands"}
+              onClick={() => setActiveSide(false)}
+            >
+              Musical Bands
+            </Link>
           </li>
           <li>
-            <Link to={"/"}>GYM</Link>
+            <Link to={"/collection/gym"} onClick={() => setActiveSide(false)}>
+              GYM
+            </Link>
           </li>
           <li>
             <Link to={"/"}>Custome Design</Link>

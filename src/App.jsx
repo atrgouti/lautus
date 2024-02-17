@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import ViewCollection from "./ViewCollection";
+import ProductDetails from "./ProductDetails";
 
 import NotFound from "./NotFound";
 
@@ -37,8 +38,16 @@ function App() {
         <Routes>
           <Route path="/" element={<Home isFixed={isFixed} />}></Route>
           <Route
-            path="/collection/:name"
+            path="/collection/:collectionName"
             element={<ViewCollection isFixed={isFixed} />}
+          ></Route>
+          <Route
+            path="/collection/:collectionName/:animeName"
+            element={<ViewCollection isFixed={isFixed} />}
+          ></Route>
+          <Route
+            path="/product/:id"
+            element={<ProductDetails isFixed={isFixed} />}
           ></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>

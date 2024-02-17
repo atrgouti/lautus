@@ -1,14 +1,36 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./viewCollection.module.css";
 import Announce from "./generalComponents/Announce";
 import Navbar from "./generalComponents/Navbar";
 import Footer from "./generalComponents/Footer";
 import ActiveFilter from "./generalComponents/ActiveFilter";
 import shirt from "./productImages/tupac2.jpg";
+import loadIcon from "/loading.gif";
+// import BlurHashImageComponent from "./generalComponents/BlurHashImageComponent";
 
 import { themeContext } from "./generalComponents/ThemeContext";
+import { Link, useParams } from "react-router-dom";
+
+import { apiLautusProducts } from "./api/apiLautusProducts";
+
 function ViewCollection({ isFixed }) {
   const { activeSide, activeSearch, activeCard } = useContext(themeContext);
+  const [isLoading, setIsLOading] = useState(false);
+  const [myData, setMyData] = useState([]);
+  const { collectionName, animeName } = useParams();
+
+  console.log(animeName);
+  useEffect(() => {
+    async function getData() {
+      let res = await apiLautusProducts(
+        collectionName,
+        setIsLOading,
+        animeName
+      );
+      setMyData(res);
+    }
+    getData();
+  }, [collectionName]);
 
   return (
     <div>
@@ -16,41 +38,41 @@ function ViewCollection({ isFixed }) {
       <Announce />
       <Navbar isFixed={isFixed} />
       <div className={styles.adjust}>
-        <h2>Anime Hoodies</h2>
+        <h2>{collectionName}</h2>
         <select name="" id="">
+          <option value="">Sort by</option>
+          <option value="">Sort by</option>
           <option value="">Sort by</option>
         </select>
       </div>
-      <div className={styles.allProducts}>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
+
+      {isLoading ? (
+        <div className={styles.loading}>
+          <img src={loadIcon} alt="" />
         </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
+      ) : myData?.length > 0 ? (
+        <div className={styles.allProducts}>
+          {myData?.map((product) => (
+            <Link
+              key={product.product_id}
+              to={`/product/${product.product_id}`}
+            >
+              <div className={styles.product} key={product.product_id}>
+                <img src={product.image.productPhotos[0]} alt="" />
+
+                <p className={styles.title}>{product.name}</p>
+                <p style={{ textAlign: "center" }}>{product.price}.00 MAD</p>
+                <button className={styles.buyitnow}>BUY IT NOW</button>
+              </div>
+            </Link>
+          ))}
         </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
+      ) : (
+        <div className={styles.loading}>
+          <p>no avaliable items.</p>
         </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
-        </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
-        </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
-        </div>
-        <div className={styles.product}>
-          <img src={shirt} alt="" />
-          <p className={styles.title}>Tupac T-shirt</p>
-        </div>
-      </div>
+      )}
+
       <Footer />
     </div>
   );

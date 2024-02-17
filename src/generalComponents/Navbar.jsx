@@ -39,12 +39,12 @@ function Navbar({ isFixed }) {
         </div>
         <ul className={styles.ul}>
           <Link to={"/"}>Home</Link>
-          <Link to={"/"}>Anime</Link>
-          <Link to={"/"}>Musical Bands</Link>
-          <Link to={"/"}>Cartoon</Link>
-          <Link to={"/"}>Matchy Matchy</Link>
-          <Link to={"/"}>TV Show</Link>
-          <Link to={"/"}>GYM</Link>
+          <Link to={"/collection/anime"}>Anime</Link>
+          <Link to={"/collection/musical-bands"}>Musical Bands</Link>
+          <Link to={"/collection/cartoon"}>Cartoon</Link>
+          <Link to={"/collection/matchy-matchy"}>Matchy Matchy</Link>
+          <Link to={"/collection/tv-show"}>TV Show</Link>
+          <Link to={"/collection/gym"}>GYM</Link>
         </ul>
         <div className={styles.logo}>
           <img src={Logo} alt="logo" />
