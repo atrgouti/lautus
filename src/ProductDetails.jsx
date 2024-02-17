@@ -24,13 +24,15 @@ function ProductDetails({ isFixed }) {
   const [chosedColor, setChosedColer] = useState("");
   const [chosedSize, setChosedSize] = useState("");
 
-  const { activeSide, activeSearch, activeCard } = useContext(themeContext);
+  const { activeSide, activeSearch, activeCard, cartItems, addItemToCart } =
+    useContext(themeContext);
   const avaliableColors = ["black", "#FF0000", "#FFC0CB", "green", "orange"];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
   const { id } = useParams();
   const [productData, setProductData] = useState([]);
 
+  console.log(cartItems);
   useEffect(
     function () {
       async function getData() {
@@ -41,6 +43,9 @@ function ProductDetails({ isFixed }) {
     },
     [id]
   );
+  useEffect(function () {
+    window.scrollTo(0, 0);
+  }, []);
 
   function handleOrder(id, title, color, size, type, quantity) {
     if (color.length === 0) return alert("please choose a color");
@@ -60,13 +65,13 @@ function ProductDetails({ isFixed }) {
       `Hey, I want the following hoodie:\n\n` +
       `ID: ${id}\n` +
       `Name: ${title}\n` +
-      `Color: ${title}\n` +
+      `Color: ${color}\n` +
       `Size: ${size}\n` +
       `type: ${type}\n` +
       `type: ${quantity}\n` +
       `Thank you!`;
 
-    const whatsappURL = `https://wa.me/0652983093?text=${encodeURIComponent(
+    const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
       message
     )}`;
 
@@ -267,7 +272,22 @@ function ProductDetails({ isFixed }) {
                 alt=""
               />
             </button>
-            <button className={styles.addToCard}>Add to card</button>
+            <button
+              className={styles.addToCard}
+              onClick={() =>
+                addItemToCart(
+                  productData.product_id,
+                  productData.name,
+                  productData?.image?.productPhotos[0],
+                  quantity,
+                  productData.price,
+                  productData.category,
+                  productData.price
+                )
+              }
+            >
+              Add to card
+            </button>
           </div>
         </main>
         <dir className={styles.description}>

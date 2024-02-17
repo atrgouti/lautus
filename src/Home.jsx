@@ -25,6 +25,9 @@ function Home({ isFixed }) {
     getData();
   }, []);
 
+  useEffect(function () {
+    window.scrollTo(0, 0);
+  }, []);
   const { activeSide, activeSearch, activeCard } = useContext(themeContext);
 
   const [mosucalBrands, setMosucalBrands] = useState([

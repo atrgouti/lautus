@@ -32,6 +32,10 @@ function ViewCollection({ isFixed }) {
     getData();
   }, [collectionName]);
 
+  useEffect(function () {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       {(activeSide || activeCard || activeSearch) && <ActiveFilter />}
