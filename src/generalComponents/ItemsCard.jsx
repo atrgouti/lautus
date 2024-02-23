@@ -3,9 +3,36 @@ import styles from "./itemsCard.module.css";
 import closeMenuIcon from "/closeMenu.svg";
 import blackShoppingCard from "/blackShoppingCard.svg";
 import { themeContext } from "./ThemeContext";
+import whatsappIcon from "/whatsappIcon.svg";
 
 function ItemsCard() {
-  const { activeCard, setActiveCard, cartItems } = useContext(themeContext);
+  const {
+    activeCard,
+    setActiveCard,
+    cartItems,
+    handleDeleteMovies,
+    increaseQuantity,
+    decreaseQuntity,
+  } = useContext(themeContext);
+  console.log(cartItems);
+
+  const total = cartItems.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.price;
+  }, 0);
+
+  function handleOrderAllThroughWhatsapp() {
+    const message =
+      `Hey, I want the following items:\n\n` +
+      cartItems.map((item) => {
+        `ID: ${item.id}\n` + `Name: ${item.title}\n` + `Thank you!`;
+      });
+
+    const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.location.href = whatsappURL;
+  }
 
   return (
     <div className={activeCard ? styles.itemsCard : styles.active}>
@@ -19,46 +46,40 @@ function ItemsCard() {
 
       {cartItems.length > 0 ? (
         <div className={styles.full}>
-          <div className={styles.item}>
-            <div className={styles.productInfo}>
-              <img
-                src="https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/gon-x-killia-hoodie-black.png"
-                alt=""
-              />
-              <div className={styles.titleQuantity}>
-                <p className={styles.title}>Awesome Hoodie</p>
-                <div className={styles.quantity}>
-                  <p>-</p>
-                  <p style={{ margin: "5px 15px" }}>2</p>
-                  <p>+</p>
+          {cartItems.map((item) => (
+            <div className={styles.item} key={item.id}>
+              <div className={styles.productInfo}>
+                <img src={item.image} alt="" />
+                <div className={styles.titleQuantity}>
+                  <p className={styles.title}>{item.title}</p>
+                  <div className={styles.quantity}>
+                    <p
+                      style={{ cursor: "pointer" }}
+                      onClick={() => decreaseQuntity(item.id)}
+                    >
+                      -
+                    </p>
+                    <p style={{ margin: "5px 15px" }}>{item.quantity}</p>
+                    <p
+                      style={{ cursor: "pointer" }}
+                      onClick={() => increaseQuantity(item.id)}
+                    >
+                      +
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={styles.price}>
-              <img src={closeMenuIcon} className={styles.icon} alt="" />
-              <p>$24.99</p>
-            </div>
-          </div>
-          <div className={styles.item}>
-            <div className={styles.productInfo}>
-              <img
-                src="https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/gon-x-killia-hoodie-black.png"
-                alt=""
-              />
-              <div className={styles.titleQuantity}>
-                <p className={styles.title}>Awesome Hoodie</p>
-                <div className={styles.quantity}>
-                  <p>-</p>
-                  <p style={{ margin: "5px 15px" }}>2</p>
-                  <p>+</p>
-                </div>
+              <div className={styles.price}>
+                <img
+                  src={closeMenuIcon}
+                  className={styles.icon}
+                  alt=""
+                  onClick={() => handleDeleteMovies(item.id)}
+                />
+                <p>{item.price} MAD</p>
               </div>
             </div>
-            <div className={styles.price}>
-              <img src={closeMenuIcon} className={styles.icon} alt="" />
-              <p>$24.99</p>
-            </div>
-          </div>
+          ))}
         </div>
       ) : (
         <div className={styles.empty}>
@@ -66,6 +87,31 @@ function ItemsCard() {
           <p>You don`t have any items in your cart.</p>
           <button>CONTINUE SHOPPING</button>
         </div>
+      )}
+      {cartItems.length > 0 && (
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              fontWeight: "bold",
+              width: "90%",
+              margin: "0px auto",
+              marginTop: "30px",
+            }}
+          >
+            <p>SUBTOTAL</p>
+            <p>{total} MAD</p>
+          </div>
+          <div className={styles.buttonOrder}>
+            <button onClick={() => handleOrderAllThroughWhatsapp()}>
+              ORDER ALL THROUGH WHATSAPP
+              <img src={whatsappIcon} alt="" />
+            </button>
+            <button>VIEW WISHLIST</button>
+          </div>
+        </>
       )}
     </div>
   );

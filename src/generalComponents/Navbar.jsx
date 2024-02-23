@@ -15,9 +15,12 @@ import ItemsCard from "./ItemsCard";
 import Search from "./Search";
 
 function Navbar({ isFixed }) {
-  const { setActiveSide, setActiveCard, setActiveSearch } =
+  const { setActiveSide, setActiveCard, setActiveSearch, cartItems } =
     useContext(themeContext);
 
+  const total = cartItems.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.price;
+  }, 0);
   return (
     <nav className={styles.nav}>
       {/* {activeSide && <ActiveFilter />} */}
@@ -70,7 +73,7 @@ function Navbar({ isFixed }) {
                 margin: "0px 4px",
               }}
             ></div>
-            <p style={{ padding: "10px" }}>0 MAD</p>
+            <p style={{ padding: "10px" }}>{total} MAD</p>
           </div>
           <img
             onClick={() => setActiveCard(true)}

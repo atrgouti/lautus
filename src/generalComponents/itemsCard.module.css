@@ -128,3 +128,38 @@
   cursor: pointer;
   height: 20px;
 }
+
+.buttonOrder {
+  width: 90%;
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.buttonOrder button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+}
+.buttonOrder button:first-child {
+  background-color: orangered;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.buttonOrder button:first-child img {
+  height: 30px;
+  margin-left: 10px;
+}
+.buttonOrder button:last-child {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  cursor: pointer;
+}

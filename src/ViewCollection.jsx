@@ -18,6 +18,7 @@ function ViewCollection({ isFixed }) {
   const [isLoading, setIsLOading] = useState(false);
   const [myData, setMyData] = useState([]);
   const { collectionName, animeName } = useParams();
+  const [sortBy, setOrderBy] = useState("");
 
   console.log(animeName);
   useEffect(() => {
@@ -25,12 +26,13 @@ function ViewCollection({ isFixed }) {
       let res = await apiLautusProducts(
         collectionName,
         setIsLOading,
-        animeName
+        animeName,
+        sortBy
       );
       setMyData(res);
     }
     getData();
-  }, [collectionName]);
+  }, [collectionName, sortBy]);
 
   useEffect(function () {
     window.scrollTo(0, 0);
@@ -43,10 +45,24 @@ function ViewCollection({ isFixed }) {
       <Navbar isFixed={isFixed} />
       <div className={styles.adjust}>
         <h2>{collectionName}</h2>
-        <select name="" id="">
-          <option value="">Sort by</option>
-          <option value="">Sort by</option>
-          <option value="">Sort by</option>
+        <select
+          id="clothing"
+          style={{
+            padding: "8px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            cursor: "pointer",
+          }}
+          value={sortBy}
+          onChange={(e) => setOrderBy(e.target.value)}
+        >
+          <option value="initial">Sort by</option>
+          <option value="title_ASC">A - Z</option>
+          <option value="title_DESK">Z - A</option>
+          <option value="price_ASC">Lowest price</option>
+          <option value="price_DESC">Heighst Price</option>
+          <option value="date_ASC">New to Old</option>
+          <option value="date_DESC">Old to New</option>
         </select>
       </div>
 

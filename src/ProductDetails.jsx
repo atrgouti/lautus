@@ -18,21 +18,30 @@ import check from "/check.svg";
 //api
 import { apiSelectProduct } from "./api/selectProduct";
 
+// tostify
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function ProductDetails({ isFixed }) {
   const [chosedImg, setChosedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [chosedColor, setChosedColer] = useState("");
   const [chosedSize, setChosedSize] = useState("");
 
-  const { activeSide, activeSearch, activeCard, cartItems, addItemToCart } =
-    useContext(themeContext);
+  const {
+    activeSide,
+    activeSearch,
+    activeCard,
+    cartItems,
+    addItemToCart,
+    setActiveCard,
+  } = useContext(themeContext);
   const avaliableColors = ["black", "#FF0000", "#FFC0CB", "green", "orange"];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
   const { id } = useParams();
   const [productData, setProductData] = useState([]);
 
-  console.log(cartItems);
   useEffect(
     function () {
       async function getData() {
@@ -43,14 +52,35 @@ function ProductDetails({ isFixed }) {
     },
     [id]
   );
+
   useEffect(function () {
     window.scrollTo(0, 0);
   }, []);
 
   function handleOrder(id, title, color, size, type, quantity) {
-    if (color.length === 0) return alert("please choose a color");
+    if (color.length === 0)
+      return toast.error("Please choose a color", {
+        position: "bottom-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
-    if (size.length === 0) return alert("please choose a size");
+    if (size.length === 0)
+      return toast.error("Please choose a Size", {
+        position: "bottom-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
     // let newObj = {
     //   id: id,
@@ -78,8 +108,7 @@ function ProductDetails({ isFixed }) {
     window.location.href = whatsappURL;
   }
 
-  // bard testing
-  const [selectedClothing, setSelectedClothing] = useState("");
+  const [selectedClothing, setSelectedClothing] = useState("hoodie");
 
   const handleClothingChange = (event) => {
     setSelectedClothing(event.target.value);
@@ -90,9 +119,21 @@ function ProductDetails({ isFixed }) {
       {(activeSide || activeCard || activeSearch) && <ActiveFilter />}
       <Announce />
       <Navbar isFixed={isFixed} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <div className={styles.workingArea}>
         <h3 style={{ paddingTop: "30px" }}>
-          Home / Product / Roronoa Zoro L1 Hoodie
+          Home / Product / {productData?.name}
         </h3>
         <main className={styles.main}>
           <div className={styles.images}>
@@ -130,8 +171,10 @@ function ProductDetails({ isFixed }) {
             </div>
           </div>
           <div className={styles.infos}>
-            <h1 className={styles.title}>{productData.name}</h1>
-            <h1 className={styles.price}>{productData.price}.00 MAD</h1>
+            <h1 className={styles.title}>{productData?.name}</h1>
+            <h1 className={styles.price}>
+              {productData?.prices?.prices?.[selectedClothing]}.00 MAD
+            </h1>
             <div className={styles.features}>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <img src={heart} alt="" />
@@ -168,7 +211,7 @@ function ProductDetails({ isFixed }) {
                   >
                     {chosedColor === color && (
                       <img
-                        style={{ zIndex: "100", height: "20px", width: "20px" }}
+                        style={{ zIndex: "20", height: "20px", width: "20px" }}
                         src={check}
                         alt=""
                       />
@@ -201,9 +244,9 @@ function ProductDetails({ isFixed }) {
                 }}
               >
                 <option value="">Choose...</option>
-                <option value="hoodies">Hoodies</option>
-                <option value="sweatshirts">Sweatshirts</option>
-                <option value="tshirts">T-shirts</option>
+                <option value="hoodie">Hoodies</option>
+                <option value="sweetshirt">Sweatshirts</option>
+                <option value="tshirt">T-shirts</option>
               </select>
             </div>
             <div className={styles.size}>
@@ -252,6 +295,7 @@ function ProductDetails({ isFixed }) {
                 </p>
               </div>
             </div>
+
             <button
               className={styles.order}
               onClick={() =>
@@ -274,17 +318,43 @@ function ProductDetails({ isFixed }) {
             </button>
             <button
               className={styles.addToCard}
-              onClick={() =>
+              onClick={() => {
+                if (chosedColor.length === 0) {
+                  return toast.error("Please choose a color", {
+                    position: "bottom-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                }
+                if (chosedSize.length === 0) {
+                  return toast.error("Please choose a Size", {
+                    position: "bottom-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                }
+
                 addItemToCart(
                   productData.product_id,
                   productData.name,
                   productData?.image?.productPhotos[0],
                   quantity,
-                  productData.price,
+                  productData.price * quantity,
                   productData.category,
                   productData.price
-                )
-              }
+                );
+                setActiveCard(true);
+              }}
             >
               Add to card
             </button>

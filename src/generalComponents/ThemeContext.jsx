@@ -15,7 +15,6 @@ function ThemeContext({ children }) {
     quantity,
     price,
     category,
-
     initialPrice
   ) {
     let itemExists = false;
@@ -49,6 +48,40 @@ function ThemeContext({ children }) {
     setCartItems(updatedCartItems);
   }
 
+  function handleDeleteMovies(id) {
+    setCartItems((items) => items.filter((item) => item.id !== id));
+  }
+
+  function increaseQuantity(id) {
+    setCartItems((allItems) =>
+      allItems.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+              price: (item.quantity + 1) * item.initialPrice,
+            }
+          : item
+      )
+    );
+  }
+
+  function decreaseQuntity(id) {
+    setCartItems((allItems) =>
+      allItems.map((item) =>
+        item.id === id
+          ? item.quantity > 1
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+                price: (item.quantity - 1) * item.initialPrice,
+              }
+            : item
+          : item
+      )
+    );
+  }
+
   return (
     <themeContext.Provider
       value={{
@@ -60,6 +93,9 @@ function ThemeContext({ children }) {
         setActiveSearch: setActiveSearch,
         cartItems: cartItems,
         addItemToCart: addItemToCart,
+        handleDeleteMovies: handleDeleteMovies,
+        increaseQuantity: increaseQuantity,
+        decreaseQuntity: decreaseQuntity,
       }}
     >
       {children}
