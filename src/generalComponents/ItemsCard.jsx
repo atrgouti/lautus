@@ -23,9 +23,11 @@ function ItemsCard() {
   function handleOrderAllThroughWhatsapp() {
     const message =
       `Hey, I want the following items:\n\n` +
-      cartItems.map((item) => {
-        `ID: ${item.id}\n` + `Name: ${item.title}\n` + `Thank you!`;
-      });
+      cartItems
+        .map((item) => {
+          return `ID: ${item.id}\n` + `Name: ${item.title}\n` + `Thank you!`;
+        })
+        .join("\n\n");
 
     const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
       message
