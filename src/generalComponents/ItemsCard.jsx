@@ -25,7 +25,13 @@ function ItemsCard() {
       `Hey, I want the following items:\n\n` +
       cartItems
         .map((item) => {
-          return `ID: ${item.id}\n` + `Name: ${item.title}\n` + `Thank you!`;
+          return (
+            `ID: ${item.id}\n` +
+            `Name: ${item.title}\n` +
+            `Image: ${item.image}` +
+            `Quantity: ${item.quantity}` +
+            `Thank you!`
+          );
         })
         .join("\n\n");
 
@@ -111,7 +117,6 @@ function ItemsCard() {
               ORDER ALL THROUGH WHATSAPP
               <img src={whatsappIcon} alt="" />
             </button>
-            <button>VIEW WISHLIST</button>
           </div>
         </>
       )}

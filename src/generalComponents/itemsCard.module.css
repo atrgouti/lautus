@@ -157,9 +157,9 @@
   height: 30px;
   margin-left: 10px;
 }
-.buttonOrder button:last-child {
+/* .buttonOrder button:last-child {
   background-color: white;
   border: 1px solid black;
   color: black;
   cursor: pointer;
-}
+} */
