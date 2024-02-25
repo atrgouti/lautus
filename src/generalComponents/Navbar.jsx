@@ -59,7 +59,9 @@ function Navbar({ isFixed }) {
             className={styles.laptopSearchIcon}
             onClick={() => setActiveSearch(true)}
           />
-          <img src={Heart} alt="" />
+          <Link to={"/wishlist"}>
+            <img src={Heart} alt="" />
+          </Link>
           <div
             className={styles.shoppingcart}
             onClick={() => setActiveCard(true)}

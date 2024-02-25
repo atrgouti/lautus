@@ -28,7 +28,6 @@ function ItemsCard() {
           return (
             `ID: ${item.id}\n` +
             `Name: ${item.title}\n` +
-            `Image: ${item.image}` +
             `Quantity: ${item.quantity}` +
             `Thank you!`
           );

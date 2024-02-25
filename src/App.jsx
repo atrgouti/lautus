@@ -2,8 +2,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import ViewCollection from "./ViewCollection";
 import ProductDetails from "./ProductDetails";
-
+import WishList from "./WishList";
+import Login from "./Login";
 import NotFound from "./NotFound";
+
+// import tailwindcss from "./tailwind.css";
 
 //importing use context
 import ThemeContext from "./generalComponents/ThemeContext";
@@ -49,6 +52,11 @@ function App() {
             path="/product/:id"
             element={<ProductDetails isFixed={isFixed} />}
           ></Route>
+          <Route
+            path="/wishlist"
+            element={<WishList isFixed={isFixed} />}
+          ></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </ThemeContext>

@@ -20,7 +20,7 @@
   margin: 0px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
 }
 .allProducts a {
   text-decoration: none;

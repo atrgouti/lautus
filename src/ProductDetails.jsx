@@ -12,6 +12,7 @@ import leftArrow from "/blackleftarrow.svg";
 import rightArrow from "/blackrightarrow.svg";
 import whatsappIcon from "/whatsappIcon.svg";
 import heart from "/heartblack.svg";
+import fullHeart from "/fullHeart.svg";
 import size from "/size.svg";
 import check from "/check.svg";
 
@@ -35,6 +36,8 @@ function ProductDetails({ isFixed }) {
     cartItems,
     addItemToCart,
     setActiveCard,
+    addItemsToWishList,
+    wishList,
   } = useContext(themeContext);
   const avaliableColors = ["black", "#FF0000", "#FFC0CB", "green", "orange"];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
@@ -114,6 +117,7 @@ function ProductDetails({ isFixed }) {
     setSelectedClothing(event.target.value);
   };
 
+  console.log("this is wishlist", wishList);
   return (
     <div>
       {(activeSide || activeCard || activeSearch) && <ActiveFilter />}
@@ -171,14 +175,48 @@ function ProductDetails({ isFixed }) {
             </div>
           </div>
           <div className={styles.infos}>
-            <h1 className={styles.title}>{productData?.name}</h1>
+            <h1 className={styles.titlee}>{productData?.name}</h1>
             <h1 className={styles.price}>
               {productData?.prices?.prices?.[selectedClothing]}.00 MAD
             </h1>
             <div className={styles.features}>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <img src={heart} alt="" />
-                <p style={{ margin: "5px" }}>add to wish list</p>
+                {/* <img src={heart} alt="" /> */}
+                {wishList.some((t) => t.id === productData.product_id) ? (
+                  <>
+                    <img src={fullHeart} alt="" />
+                    <p
+                      style={{ margin: "5px", cursor: "pointer" }}
+                      onClick={() =>
+                        addItemsToWishList(
+                          productData.product_id,
+                          productData.name,
+                          productData?.image?.productPhotos[chosedImg],
+                          productData.price
+                        )
+                      }
+                    >
+                      Added to wishlist
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <img src={heart} alt="" />
+                    <p
+                      style={{ margin: "5px", cursor: "pointer" }}
+                      onClick={() =>
+                        addItemsToWishList(
+                          productData.product_id,
+                          productData.name,
+                          productData?.image?.productPhotos[chosedImg],
+                          productData.price
+                        )
+                      }
+                    >
+                      Add to wish List
+                    </p>
+                  </>
+                )}
               </div>
               <div
                 style={{

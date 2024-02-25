@@ -7,6 +7,7 @@ function ThemeContext({ children }) {
   const [activeCard, setActiveCard] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
   const [cartItems, setCartItems] = useLocalStorageState([], "cartItems");
+  const [wishList, setWishList] = useLocalStorageState([], "wishList");
 
   function addItemToCart(
     id,
@@ -82,6 +83,31 @@ function ThemeContext({ children }) {
     );
   }
 
+  //wish list functions
+  function addItemsToWishList(id, title, image, initialPrice) {
+    const checkIfExists = wishList.some((item) => item.id === id);
+
+    if (checkIfExists) {
+      const updatedList = wishList.filter((item) => item.id !== id);
+      setWishList(updatedList);
+    }
+    if (!checkIfExists) {
+      const newItem = {
+        id,
+        title,
+        image,
+        initialPrice,
+      };
+      const updatedWishList = [...wishList, newItem];
+      setWishList(updatedWishList);
+      // console.log("zdnah jdid");
+    }
+  }
+
+  function deleteProductWishList(id) {
+    setWishList((item) => item.filter((item) => item.id !== id));
+  }
+
   return (
     <themeContext.Provider
       value={{
@@ -96,6 +122,9 @@ function ThemeContext({ children }) {
         handleDeleteMovies: handleDeleteMovies,
         increaseQuantity: increaseQuantity,
         decreaseQuntity: decreaseQuntity,
+        addItemsToWishList: addItemsToWishList,
+        deleteProductWishList: deleteProductWishList,
+        wishList: wishList,
       }}
     >
       {children}
