@@ -97,9 +97,9 @@ function Sidebar() {
               GYM
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to={"/"}>Custome Design</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>
