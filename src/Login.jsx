@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import supabase from "../src/api/supabase"; // Import supabase client instance
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
+
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    setError(null); // Reset error state
+
+    try {
+      let { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // If successful login, redirect to dashboard
+      window.location.href = "/dashboard";
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div style={styles.container}>
       <img
@@ -14,10 +40,25 @@ const Login = () => {
         alt=""
       />
       <h1 style={{ margin: "20px" }}>Login to your dashboard</h1>
-      <form style={styles.form} action="">
-        <input style={styles.input} type="text" placeholder="Username" />
-        <input style={styles.input} type="password" placeholder="Password" />
-        <button style={styles.button}>Login</button>
+      <form style={styles.form} onSubmit={handleLogin}>
+        <input
+          style={styles.input}
+          type="text"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          style={styles.input}
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        <button style={styles.button} type="submit">
+          Login
+        </button>
       </form>
     </div>
   );
