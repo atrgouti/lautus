@@ -50,7 +50,9 @@ function Navbar({ isFixed }) {
           <Link to={"/collection/gym"}>GYM</Link>
         </ul>
         <div className={styles.logo}>
-          <img src={Logo} alt="logo" />
+          <Link to={"/"}>
+            <img src={Logo} alt="logo" />
+          </Link>
         </div>
         <div className={styles.searchCart}>
           <img
