@@ -1,4 +1,4 @@
-import styles from "./sizeGuide.module.css";
+import styles from "./sizeguide.module.css";
 import closeMenu from "/closeMenu.svg";
 function SizeGuide({ setSizeGuide }) {
   return (
