@@ -35,6 +35,10 @@
   margin: 0px auto;
   margin-top: 30%;
 }
+.links a {
+  text-decoration: none;
+  color: black;
+}
 .links ul {
   list-style: none;
 }

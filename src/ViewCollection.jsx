@@ -20,7 +20,6 @@ function ViewCollection({ isFixed }) {
   const { collectionName, animeName } = useParams();
   const [sortBy, setOrderBy] = useState("");
 
-  console.log(animeName);
   useEffect(() => {
     async function getData() {
       let res = await apiLautusProducts(
@@ -32,7 +31,7 @@ function ViewCollection({ isFixed }) {
       setMyData(res);
     }
     getData();
-  }, [collectionName, sortBy]);
+  }, [collectionName, sortBy, animeName]);
 
   useEffect(function () {
     window.scrollTo(0, 0);

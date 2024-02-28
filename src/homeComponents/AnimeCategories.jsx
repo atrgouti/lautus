@@ -1,8 +1,8 @@
 import styles from "./animeCategories.module.css";
-import onePiece from "/One_Piece.jpg";
-import naruto from "/naruto.jpg";
-import hantur from "/hunter.jpg";
-import attackOnTitans from "/attackOnTitans.jpg";
+import onePiece from "/compressOnePiece.webp";
+import naruto from "/narutoCompres.jpg";
+import hantur from "/hunterCompres.webp";
+import attackOnTitans from "/attackCompersed.jpg";
 import { Link } from "react-router-dom";
 
 function AnimeCategories() {

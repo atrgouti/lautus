@@ -1,17 +1,16 @@
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import ViewCollection from "./ViewCollection";
-import ProductDetails from "./ProductDetails";
-import WishList from "./WishList";
-import Login from "./Login";
-import Dashboard from "./Dashboard";
-import NotFound from "./NotFound";
-
-// import tailwindcss from "./tailwind.css";
-
-//importing use context
 import ThemeContext from "./generalComponents/ThemeContext";
-import { useEffect, useState } from "react";
+import loadingCircle from "/icons8-loading-circle.gif";
+
+const Home = lazy(() => import("./Home"));
+const ViewCollection = lazy(() => import("./ViewCollection"));
+const ProductDetails = lazy(() => import("./ProductDetails"));
+const WishList = lazy(() => import("./WishList"));
+const Login = lazy(() => import("./Login"));
+const Dashboard = lazy(() => import("./Dashboard"));
+const NotFound = lazy(() => import("./NotFound"));
+
 function App() {
   const [isFixed, setIsFixed] = useState(false);
 
@@ -39,28 +38,41 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeContext>
-        <Routes>
-          <Route path="/" element={<Home isFixed={isFixed} />}></Route>
-          <Route
-            path="/collection/:collectionName"
-            element={<ViewCollection isFixed={isFixed} />}
-          ></Route>
-          <Route
-            path="/collection/:collectionName/:animeName"
-            element={<ViewCollection isFixed={isFixed} />}
-          ></Route>
-          <Route
-            path="/product/:id"
-            element={<ProductDetails isFixed={isFixed} />}
-          ></Route>
-          <Route
-            path="/wishlist"
-            element={<WishList isFixed={isFixed} />}
-          ></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/Dashboard" element={<Dashboard />}></Route>
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
+        <Suspense
+          fallback={
+            <div
+              style={{
+                height: "100vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <img src={loadingCircle} alt="" />
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Home isFixed={isFixed} />} />
+            <Route
+              path="/collection/:collectionName"
+              element={<ViewCollection isFixed={isFixed} />}
+            />
+            <Route
+              path="/collection/:collectionName/:animeName"
+              element={<ViewCollection isFixed={isFixed} />}
+            />
+            <Route
+              path="/product/:id"
+              element={<ProductDetails isFixed={isFixed} />}
+            />
+            <Route path="/wishlist" element={<WishList isFixed={isFixed} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </ThemeContext>
     </BrowserRouter>
   );

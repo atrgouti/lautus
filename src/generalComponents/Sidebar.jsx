@@ -40,9 +40,24 @@ function Sidebar() {
               >
                 <li>One piece</li>
               </Link>
-              <li>Dragon Ball</li>
-              <li>Hunter X Hunter</li>
-              <li>Death Note</li>
+              <Link
+                to={"/collection/anime/attack_on_titans"}
+                onClick={() => setActiveSide(false)}
+              >
+                <li>Attack on titan</li>
+              </Link>
+              <Link
+                to={"/collection/anime/hunter-x-hunter"}
+                onClick={() => setActiveSide(false)}
+              >
+                <li>Hunter X Hunter</li>
+              </Link>
+              <Link
+                to={"/collection/anime/jujusto-kaisen"}
+                onClick={() => setActiveSide(false)}
+              >
+                <li>Jujusto Kaisen</li>
+              </Link>
             </ul>
           )}
           <li>

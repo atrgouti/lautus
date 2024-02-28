@@ -127,7 +127,6 @@ function ProductDetails({ isFixed }) {
     setSelectedClothing(event.target.value);
   };
 
-  console.log("this is wishlist", wishList);
   return (
     <div>
       {(activeSide || activeCard || activeSearch) && <ActiveFilter />}

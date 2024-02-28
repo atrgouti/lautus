@@ -4,7 +4,6 @@ import Product from "./Product";
 import { Link } from "react-router-dom";
 
 function ProductsCarousel({ header, data, bg }) {
-  console.log("crosaal", data);
   return (
     <div className={styles.productCarousel} style={{ backgroundColor: bg }}>
       <h1

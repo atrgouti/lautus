@@ -4,6 +4,7 @@ import closeMenuIcon from "/closeMenu.svg";
 import blackShoppingCard from "/blackShoppingCard.svg";
 import { themeContext } from "./ThemeContext";
 import whatsappIcon from "/whatsappIcon.svg";
+import { Link } from "react-router-dom";
 
 function ItemsCard() {
   const {
@@ -91,7 +92,9 @@ function ItemsCard() {
         <div className={styles.empty}>
           <img src={blackShoppingCard} alt="" />
           <p>You don`t have any items in your cart.</p>
-          <button>CONTINUE SHOPPING</button>
+          <Link to={"/collection/anime"} onClick={() => setActiveCard(false)}>
+            <button style={{ cursor: "pointer" }}>CONTINUE SHOPPING</button>
+          </Link>
         </div>
       )}
       {cartItems.length > 0 && (
