@@ -14,7 +14,6 @@ function ItemsCard() {
     increaseQuantity,
     decreaseQuntity,
   } = useContext(themeContext);
-  console.log(cartItems);
 
   const total = cartItems.reduce((accumulator, currentValue) => {
     return accumulator + currentValue.price;

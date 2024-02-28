@@ -8,6 +8,7 @@ function ThemeContext({ children }) {
   const [activeSearch, setActiveSearch] = useState(false);
   const [cartItems, setCartItems] = useLocalStorageState([], "cartItems");
   const [wishList, setWishList] = useLocalStorageState([], "wishList");
+  const [sizeGuide, setSizeGuide] = useState(false);
 
   function addItemToCart(
     id,
@@ -125,6 +126,8 @@ function ThemeContext({ children }) {
         addItemsToWishList: addItemsToWishList,
         deleteProductWishList: deleteProductWishList,
         wishList: wishList,
+        sizeGuide: sizeGuide,
+        setSizeGuide: setSizeGuide,
       }}
     >
       {children}

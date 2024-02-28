@@ -59,8 +59,15 @@ function Footer() {
       </div>
       <div className={styles.line}></div>
       <div className={styles.social}>
-        <img src={instagram} alt="" />
-        <img src={tiktok} alt="" />
+        <a
+          href="https://www.instagram.com/lautus_print_shop/?hl=ar"
+          target="_blank"
+        >
+          <img src={instagram} alt="" />
+        </a>
+        <a href="https://www.tiktok.com/@lautus_print_shop">
+          <img src={tiktok} alt="" />
+        </a>
       </div>
     </div>
   );

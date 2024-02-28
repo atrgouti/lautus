@@ -4,6 +4,7 @@ import ViewCollection from "./ViewCollection";
 import ProductDetails from "./ProductDetails";
 import WishList from "./WishList";
 import Login from "./Login";
+import Dashboard from "./Dashboard";
 import NotFound from "./NotFound";
 
 // import tailwindcss from "./tailwind.css";
@@ -57,6 +58,7 @@ function App() {
             element={<WishList isFixed={isFixed} />}
           ></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/Dashboard" element={<Dashboard />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </ThemeContext>

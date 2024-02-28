@@ -1,6 +1,7 @@
 import Announce from "./generalComponents/Announce";
 import Navbar from "./generalComponents/Navbar";
 import ActiveFilter from "./generalComponents/ActiveFilter";
+import SizeGuide from "./SizeGuide";
 import styles from "./ProductDetails.module.css";
 import Footer from "./generalComponents/Footer";
 
@@ -38,8 +39,17 @@ function ProductDetails({ isFixed }) {
     setActiveCard,
     addItemsToWishList,
     wishList,
+    sizeGuide,
+    setSizeGuide,
   } = useContext(themeContext);
-  const avaliableColors = ["black", "#FF0000", "#FFC0CB", "green", "orange"];
+  const avaliableColors = [
+    "black",
+    "whitesmoke",
+    "red",
+    "pink",
+    "green",
+    "orange",
+  ];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
   const { id } = useParams();
@@ -95,13 +105,13 @@ function ProductDetails({ isFixed }) {
     // };
     // console.log(newObj);
     const message =
-      `Hey, I want the following hoodie:\n\n` +
+      `Hey, I want the following item:\n\n` +
       `ID: ${id}\n` +
       `Name: ${title}\n` +
       `Color: ${color}\n` +
       `Size: ${size}\n` +
       `type: ${type}\n` +
-      `type: ${quantity}\n` +
+      `quantity: ${quantity}\n` +
       `Thank you!`;
 
     const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
@@ -121,6 +131,9 @@ function ProductDetails({ isFixed }) {
   return (
     <div>
       {(activeSide || activeCard || activeSearch) && <ActiveFilter />}
+
+      {sizeGuide && <SizeGuide setSizeGuide={setSizeGuide} />}
+      {sizeGuide && <ActiveFilter />}
       <Announce />
       <Navbar isFixed={isFixed} />
       <ToastContainer
@@ -226,7 +239,12 @@ function ProductDetails({ isFixed }) {
                 }}
               >
                 <img src={size} alt="" />
-                <p style={{ margin: "5px" }}>Size Guide</p>
+                <p
+                  style={{ margin: "5px", cursor: "pointer" }}
+                  onClick={() => setSizeGuide(true)}
+                >
+                  Size Guide
+                </p>
               </div>
             </div>
             <div className={styles.color}>
@@ -285,6 +303,9 @@ function ProductDetails({ isFixed }) {
                 <option value="hoodie">Hoodies</option>
                 <option value="sweetshirt">Sweatshirts</option>
                 <option value="tshirt">T-shirts</option>
+                <option value="tshirt">Caps</option>
+                <option value="tshirt">Buckets</option>
+                <option value="tshirt">Mugs</option>
               </select>
             </div>
             <div className={styles.size}>
@@ -387,7 +408,7 @@ function ProductDetails({ isFixed }) {
                   productData.name,
                   productData?.image?.productPhotos[0],
                   quantity,
-                  productData.price * quantity,
+                  productData?.prices?.prices?.[selectedClothing] * quantity,
                   productData.category,
                   productData.price
                 );

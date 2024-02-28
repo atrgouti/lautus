@@ -15,7 +15,7 @@ import ItemsCard from "./ItemsCard";
 import Search from "./Search";
 
 function Navbar({ isFixed }) {
-  const { setActiveSide, setActiveCard, setActiveSearch, cartItems } =
+  const { setActiveSide, setActiveCard, setActiveSearch, cartItems, wishList } =
     useContext(themeContext);
 
   const total = cartItems.reduce((accumulator, currentValue) => {
@@ -59,8 +59,21 @@ function Navbar({ isFixed }) {
             className={styles.laptopSearchIcon}
             onClick={() => setActiveSearch(true)}
           />
-          <Link to={"/wishlist"}>
+          <Link to={"/wishlist"} style={{ position: "relative" }}>
             <img src={Heart} alt="" />
+            {wishList.length > 0 && (
+              <p
+                style={{
+                  position: "absolute",
+                  top: "-5px",
+                  color: "white",
+                  right: "2px",
+                  fontSize: "12px",
+                }}
+              >
+                {wishList.length}
+              </p>
+            )}
           </Link>
           <div
             className={styles.shoppingcart}

@@ -1,8 +1,10 @@
 import Carousel from "@itseasy21/react-elastic-carousel";
 import styles from "./productCarousel.module.css";
 import Product from "./Product";
+import { Link } from "react-router-dom";
 
 function ProductsCarousel({ header, data, bg }) {
+  console.log("crosaal", data);
   return (
     <div className={styles.productCarousel} style={{ backgroundColor: bg }}>
       <h1
@@ -25,19 +27,22 @@ function ProductsCarousel({ header, data, bg }) {
               width: 1,
               itemsToShow: 1,
               itemsToScroll: 1,
-            }, // Screens less than 600px
-            { width: 600, itemsToShow: 2, itemsToScroll: 1 }, //Screens between 600px and 900px
-            { width: 900, itemsToShow: 4, itemsToScroll: 1 }, // Screens wider than 900px
+            },
+            { width: 600, itemsToShow: 2, itemsToScroll: 1 },
+            { width: 900, itemsToShow: 4, itemsToScroll: 1 },
           ]}
         >
-          {data.map((item) => (
-            <Product
-              key={item.id}
-              title={item.title}
-              image={item.image}
-              bg={bg}
-            />
-          ))}
+          {data.length > 0 &&
+            data.map((item) => (
+              <Link to={`/product/${item.product_id}`}>
+                <Product
+                  key={item.product_id}
+                  title={item.name}
+                  image={item?.image?.productPhotos[0]}
+                  bg={bg}
+                />
+              </Link>
+            ))}
         </Carousel>
       </div>
     </div>

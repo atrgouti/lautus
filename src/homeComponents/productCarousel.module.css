@@ -4,6 +4,10 @@
 
   transform: translateY(0px);
 }
+.productCarousel a {
+  text-decoration: none;
+  color: black;
+}
 .categoriesArea {
   width: 90%;
   margin: 0px auto;
