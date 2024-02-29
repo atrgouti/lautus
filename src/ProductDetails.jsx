@@ -302,9 +302,9 @@ function ProductDetails({ isFixed }) {
                 <option value="hoodie">Hoodies</option>
                 <option value="sweetshirt">Sweatshirts</option>
                 <option value="tshirt">T-shirts</option>
-                <option value="tshirt">Caps</option>
-                <option value="tshirt">Buckets</option>
-                <option value="tshirt">Mugs</option>
+                <option value="cap">Caps</option>
+                <option value="buckets">Buckets</option>
+                <option value="mug">Mugs</option>
               </select>
             </div>
             <div className={styles.size}>

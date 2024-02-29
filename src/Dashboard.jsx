@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "../src/api/supabase";
 import withAuthCheck from "./withAuthCheck";
+import styles from "./dashboard.module.css";
+import { Link } from "react-router-dom";
+import { apiLautusProducts } from "./api/apiLautusProducts";
+import loadingCircle from "/icons8-loading-circle.gif";
+
 function Dashboard() {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
+  const [mydata, setMyData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //handle sign out
   const handleSignOut = async () => {
@@ -19,88 +23,121 @@ function Dashboard() {
       console.error("Error signing out:", error.message);
     }
   };
+  //get data
+  useEffect(() => {
+    async function getData() {
+      let res = await apiLautusProducts("none", setLoading);
+      setMyData(res);
+    }
+    getData();
+  }, []);
 
-  // Function to handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Construct the product object with default values
-    const product = {
-      name,
-      price: parseInt(price), // Convert price to integer
-      image: {
-        productPhotos: [
-          "https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/gon-x-killia-hoodie-black.png",
-          "https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/gon-x-killia-hoodie-white.png",
-        ],
-      },
-      description,
-      category: "cartoon",
-      anime_name: "none",
-      prices: {
-        prices: {
-          hoodie: 199,
-          tshirt: 758,
-          sweetshirt: 452,
-        },
-      },
-    };
-
+  const handleDelete = async (id) => {
     try {
-      // Insert the new product into the 'products' table
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("products")
-        .insert([product])
-        .select();
+        .delete()
+        .eq("idd", id)
+        .single(); // Ensure only one record is deleted
 
       if (error) {
-        throw error;
+        throw error; // Throw error if deletion operation fails
       }
 
-      console.log("Product added successfully:", data);
-      // Reset form fields after successful submission
-      setName("");
-      setPrice("");
-      setDescription("");
+      // Optionally, you can return some confirmation here
+      return { success: true, message: "Product deleted successfully." };
     } catch (error) {
-      console.error("Error adding product:", error.message);
+      console.error("Error deleting product:", error.message);
+      // Handle error appropriately, e.g., show a message to the user
+      return { success: false, message: "Failed to delete product." };
     }
   };
 
   return (
     <div>
-      <h1>welcome to your dashboard</h1>
-
-      <button onClick={() => handleSignOut()}>Sign out</button>
-
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </label>
-        <label>
-          Price:
-          <input
-            type="number"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-        </label>
-        <label>
-          Description:
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-        <button type="submit">Add Product</button>
-      </form>
+      <div className={styles.nav}>
+        <h2 style={{ color: "white", margin: "20px" }}>Dashboard</h2>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/Dashboard/AddProduct">
+            <button>Add New Product</button>
+          </Link>
+          <button onClick={() => handleSignOut()}>Sign out</button>
+        </div>
+      </div>
+      {loading ? (
+        <img src={loadingCircle} alt="" />
+      ) : (
+        <div className={styles.showProducts}>
+          <h4 style={{ textAlign: "center", margin: "20px" }}>
+            currently you have {mydata.length} items in your website
+          </h4>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+              textAlign: "center",
+            }}
+          >
+            <thead>
+              <tr>
+                <th style={{ border: "2px solid black", padding: "10px" }}>
+                  Id
+                </th>
+                <th style={{ border: "2px solid black", padding: "10px" }}>
+                  Name
+                </th>
+                <th style={{ border: "2px solid black", padding: "10px" }}>
+                  Initial Price
+                </th>
+                <th style={{ border: "2px solid black", padding: "10px" }}>
+                  Image
+                </th>
+                <th style={{ border: "2px solid black", padding: "10px" }}>
+                  Category
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {mydata.map((p) => (
+                <tr key={p.product_id}>
+                  <td style={{ border: "2px solid black", padding: "10px" }}>
+                    {p.product_id}
+                  </td>
+                  <td style={{ border: "2px solid black", padding: "10px" }}>
+                    {p.name}
+                  </td>
+                  <td style={{ border: "2px solid black", padding: "10px" }}>
+                    {p.price} MAD
+                  </td>
+                  <td style={{ border: "2px solid black", padding: "10px" }}>
+                    <img
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto",
+                        width: "100px",
+                      }} // Ensure image is responsive
+                      src={p.image?.productPhotos[0]}
+                      alt=""
+                    />
+                  </td>
+                  <td style={{ border: "2px solid black", padding: "10px" }}>
+                    {p.category}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
 
-export default withAuthCheck(Dashboard); // Wrap Dashboard with the HOC
+export default withAuthCheck(Dashboard);

@@ -1,0 +1,62 @@
+.nav {
+  height: auto;
+  width: 100%;
+  background-color: rgb(32, 32, 32);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav button {
+  padding: 10px 20px;
+  background-color: white;
+  border: 1px solid white;
+  color: black;
+  border-radius: 10px;
+  margin-right: 20px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.formula {
+  width: 70%;
+  margin: 10px auto;
+}
+
+@media screen and (max-width: 900px) {
+  .formula {
+    width: 100%;
+    margin: 10px auto;
+  }
+}
+
+.showProducts {
+  width: 90%;
+  margin: 20px auto;
+}
+.showProducts table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  table {
+    border: 0; /* Remove border from the table on small screens */
+  }
+
+  /* Hide table header cells on small screens */
+  th {
+    display: none;
+  }
+
+  /* Set border-bottom for table data cells on small screens */
+  td {
+    border-bottom: 1px solid black;
+  }
+
+  /* Adjust padding for table data cells on small screens */
+  td {
+    padding: 5px;
+  }
+}

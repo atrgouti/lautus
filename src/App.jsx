@@ -9,6 +9,7 @@ const ProductDetails = lazy(() => import("./ProductDetails"));
 const WishList = lazy(() => import("./WishList"));
 const Login = lazy(() => import("./Login"));
 const Dashboard = lazy(() => import("./Dashboard"));
+const AddProduct = lazy(() => import("./AddProduct"));
 const NotFound = lazy(() => import("./NotFound"));
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
             <Route path="/wishlist" element={<WishList isFixed={isFixed} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Dashboard/AddProduct" element={<AddProduct />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
