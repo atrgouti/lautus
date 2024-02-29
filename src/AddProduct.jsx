@@ -536,7 +536,7 @@ function Dashboard() {
                     htmlFor="animename"
                     style={{ fontSize: "1.2em", fontWeight: "bold" }}
                   >
-                    Category:
+                    anime name:
                   </label>
                 </td>
                 <td style={{ padding: "10px" }}>
