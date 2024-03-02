@@ -34,7 +34,7 @@ function ItemsCard() {
         })
         .join("\n\n");
 
-    const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
+    const whatsappURL = `https://wa.me/0665929360?text=${encodeURIComponent(
       message
     )}`;
 

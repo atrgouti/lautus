@@ -21,13 +21,13 @@ function Footer() {
           <img src={phone} alt="" />
           <p>24/7 Customer Service</p>
         </div>
-        <div className={styles.service}>
+        {/* <div className={styles.service}>
           <img src={cash} alt="" />
           <p>Cash On delivery</p>
-        </div>
+        </div> */}
         <div className={styles.service}>
           <img src={truck} alt="" />
-          <p>Fast 2 - 3 days Shipping</p>
+          <p>4 - 5 days Shipping</p>
         </div>
       </div>
       <div className={styles.logo}>

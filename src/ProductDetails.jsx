@@ -24,11 +24,14 @@ import { apiSelectProduct } from "./api/selectProduct";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import SelectWithSearch from "./SelectWithSearch";
+
 function ProductDetails({ isFixed }) {
   const [chosedImg, setChosedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [chosedColor, setChosedColer] = useState("");
   const [chosedSize, setChosedSize] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   const {
     activeSide,
@@ -95,6 +98,18 @@ function ProductDetails({ isFixed }) {
         theme: "colored",
       });
 
+    if (selectedCity.length === 0)
+      return toast.error("Please choose a city", {
+        position: "bottom-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
     // let newObj = {
     //   id: id,
     //   title: title,
@@ -110,11 +125,13 @@ function ProductDetails({ isFixed }) {
       `Name: ${title}\n` +
       `Color: ${color}\n` +
       `Size: ${size}\n` +
-      `type: ${type}\n` +
-      `quantity: ${quantity}\n` +
+      `Type: ${type}\n` +
+      `Quantity: ${quantity}\n` +
+      `City: ${selectedCity}\n` +
+      `Shipping price: ${cities[selectedCity]}\n` +
       `Thank you!`;
 
-    const whatsappURL = `https://wa.me/0643357502?text=${encodeURIComponent(
+    const whatsappURL = `https://wa.me/0665929360?text=${encodeURIComponent(
       message
     )}`;
 
@@ -125,6 +142,25 @@ function ProductDetails({ isFixed }) {
 
   const handleClothingChange = (event) => {
     setSelectedClothing(event.target.value);
+  };
+
+  //add shiping functionality
+  const cities = {
+    rabat: 45,
+    fes: 50,
+    oujda: 75,
+    nador: 100,
+    agadir: 39,
+    marakech: 79,
+    mknas: 67,
+    tanrger: 87,
+    hocema: 56,
+    oujda: 45,
+    brkan: 24,
+  };
+
+  const handleSelectCity = (city) => {
+    setSelectedCity(city);
   };
 
   return (
@@ -324,6 +360,21 @@ function ProductDetails({ isFixed }) {
                 ))}
               </div>
             </div>
+            {/* shipping  */}
+            <div style={{ margin: "20px 0px" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <h3>City:</h3>
+                <SelectWithSearch cities={cities} onSelect={handleSelectCity} />
+              </div>
+              {selectedCity && (
+                <p style={{ marginTop: "10px", fontWeight: "bold" }}>
+                  Your shipping price to {selectedCity} is{" "}
+                  <span style={{ color: "red" }}>
+                    {cities[selectedCity]} MAD
+                  </span>
+                </p>
+              )}
+            </div>
             <div className={styles.quantity}>
               <h3>Quantity :</h3>
               <div
@@ -423,7 +474,10 @@ function ProductDetails({ isFixed }) {
           <div className={styles.desc}>
             <p>Composition:</p>
             <br />
-            <p>- Material: 220 GSM 100% Cotton</p>
+            <p>
+              - Material: 220 GSM{" "}
+              {selectedClothing === "sweetshirt" ? "70%" : "100%"} Cotton
+            </p>
             <p>- Fabric Type: Washed</p>
             <p>- Print Quality: High-quality Embroidery</p>
             <p>- Construction: Double-needle Stitched Sleeve and Bottom</p>
