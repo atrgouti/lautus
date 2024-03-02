@@ -127,8 +127,13 @@ function ProductDetails({ isFixed }) {
       `Size: ${size}\n` +
       `Type: ${type}\n` +
       `Quantity: ${quantity}\n` +
+      `Price: ${productData?.prices?.prices?.[selectedClothing] * quantity}\n` +
       `City: ${selectedCity}\n` +
       `Shipping price: ${cities[selectedCity]}\n` +
+      `Total price: ${
+        productData?.prices?.prices?.[selectedClothing] * quantity +
+        cities[selectedCity]
+      }\n` +
       `Thank you!`;
 
     const whatsappURL = `https://wa.me/0665929360?text=${encodeURIComponent(
