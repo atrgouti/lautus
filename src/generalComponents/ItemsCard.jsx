@@ -26,7 +26,7 @@ function ItemsCard() {
       cartItems
         .map((item, idx) => {
           return (
-            `item ${idx + 1}\n\n` +
+            `item ${idx}\n\n` +
             `ID: ${item.id}\n` +
             `Name: ${item.title}\n` +
             `Color: ${item.color}\n` +
@@ -35,7 +35,7 @@ function ItemsCard() {
             `price: ${item.price}\n` +
             `City: ${item.city}\n` +
             `Shipping: ${item.shipping}\n` +
-            `Total for this item: ${item.price + item.shipping}\n` +
+            `Total for this item: ${item.price + item.shipping}\n`
           );
         })
         .join("\n\n + thank you");
