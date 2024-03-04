@@ -24,9 +24,9 @@ function ItemsCard() {
     const message =
       `Hey, I want the following items:\n\n` +
       cartItems
-        .map((item) => {
+        .map((item, idx) => {
           return (
-            `Hey, I want the following item:\n\n` +
+            `item ${idx + 1}\n\n` +
             `ID: ${item.id}\n` +
             `Name: ${item.title}\n` +
             `Color: ${item.color}\n` +
@@ -36,10 +36,9 @@ function ItemsCard() {
             `City: ${item.city}\n` +
             `Shipping: ${item.shipping}\n` +
             `Total for this item: ${item.price + item.shipping}\n` +
-            `Thank you!`
           );
         })
-        .join("\n\n");
+        .join("\n\n + thank you");
 
     const whatsappURL = `https://wa.me/0665929360?text=${encodeURIComponent(
       message
