@@ -786,7 +786,9 @@ function ProductDetails({ isFixed }) {
                   productData.category,
                   productData.price,
                   selectedCity,
-                  cities[selectedCity]
+                  cities[selectedCity],
+                  selectedClothing,
+                  chosedColor
                 );
                 setActiveCard(true);
               }}

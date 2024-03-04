@@ -19,7 +19,9 @@ function ThemeContext({ children }) {
     category,
     initialPrice,
     city,
-    shipping
+    shipping,
+    type,
+    color
   ) {
     let itemExists = false;
     const updatedCartItems = cartItems.map((item) => {
@@ -47,6 +49,8 @@ function ThemeContext({ children }) {
         initialPrice,
         city,
         shipping,
+        type,
+        color,
       };
       updatedCartItems.push(newItemObject);
     }

@@ -30,10 +30,14 @@ function ItemsCard() {
             `ID: ${item.id}\n` +
             `Name: ${item.title}\n` +
             `Color: ${item.color}\n` +
+            `Type: ${item.type}\n` +
             `Quantity: ${item.quantity}\n` +
+            `price: ${item.price}\n` +
             `City: ${item.city}\n` +
-            `shipping: ${item.shipping}\n` +
-            `Thank you!`
+            `Shipping: ${item.shipping}\n` +
+            `Total for this item: ${
+              item.quantity * item.price + item.shipping
+            }\n``Thank you!`
           );
         })
         .join("\n\n");
