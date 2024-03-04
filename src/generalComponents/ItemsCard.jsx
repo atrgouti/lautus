@@ -37,7 +37,8 @@ function ItemsCard() {
             `Shipping: ${item.shipping}\n` +
             `Total for this item: ${
               item.quantity * item.price + item.shipping
-            }\n``Thank you!`
+            }\n` +
+            `Thank you!`
           );
         })
         .join("\n\n");
