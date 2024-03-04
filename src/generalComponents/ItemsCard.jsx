@@ -35,9 +35,7 @@ function ItemsCard() {
             `price: ${item.price}\n` +
             `City: ${item.city}\n` +
             `Shipping: ${item.shipping}\n` +
-            `Total for this item: ${
-              item.quantity * item.price + item.shipping
-            }\n` +
+            `Total for this item: ${item.price + item.shipping}\n` +
             `Thank you!`
           );
         })
