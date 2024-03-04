@@ -26,9 +26,13 @@ function ItemsCard() {
       cartItems
         .map((item) => {
           return (
+            `Hey, I want the following item:\n\n` +
             `ID: ${item.id}\n` +
             `Name: ${item.title}\n` +
-            `Quantity: ${item.quantity}` +
+            `Color: ${item.color}\n` +
+            `Quantity: ${item.quantity}\n` +
+            `City: ${item.city}\n` +
+            `shipping: ${item.shipping}\n` +
             `Thank you!`
           );
         })
