@@ -64,13 +64,15 @@ function Dashboard() {
       }
 
       // Upload back image to Supabase Storage
-      const { data: backImageData, error: backImageError } =
-        await supabase.storage
-          .from("anime")
-          .upload(`${backImage.name}`, backImage);
+      if (backImage !== null) {
+        const { data: backImageData, error: backImageError } =
+          await supabase.storage
+            .from("anime")
+            .upload(`${backImage.name}`, backImage);
 
-      if (backImageError) {
-        throw backImageError;
+        if (backImageError) {
+          throw backImageError;
+        }
       }
 
       // Construct the product object with default values
@@ -80,7 +82,6 @@ function Dashboard() {
         image: {
           productPhotos: [
             `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/${frontImage.name}`,
-            `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/${backImage.name}`,
           ],
         },
         description,
@@ -97,6 +98,12 @@ function Dashboard() {
           },
         },
       };
+
+      if (backImage !== null) {
+        product.image.productPhotos.push(
+          `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/${backImage.name}`
+        );
+      }
 
       // Insert the new product into the 'products' table
 
@@ -603,12 +610,11 @@ function Dashboard() {
                   htmlFor="back-image"
                   style={{ fontSize: "1.2em", fontWeight: "bold" }}
                 >
-                  Back Image:
+                  Back Image (optional):
                 </label>
               </td>
               <td style={{ padding: "10px" }}>
                 <input
-                  required
                   type="file"
                   id="back-image"
                   accept="image/*"

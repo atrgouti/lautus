@@ -523,27 +523,31 @@ function ProductDetails({ isFixed }) {
               ))}
             </div>
             <div className={styles.bg}>
-              <img
-                src={leftArrow}
-                className={styles.leftArrow}
-                alt=""
-                onClick={() => {
-                  if (chosedImg > 0) {
-                    setChosedImg(0);
-                  }
-                }}
-              />
+              {productData?.image?.productPhotos.length > 1 && (
+                <img
+                  src={leftArrow}
+                  className={styles.leftArrow}
+                  alt=""
+                  onClick={() => {
+                    if (chosedImg > 0) {
+                      setChosedImg(0);
+                    }
+                  }}
+                />
+              )}
               <img src={productData?.image?.productPhotos[chosedImg]} alt="" />
-              <img
-                src={rightArrow}
-                className={styles.rightArrow}
-                onClick={() => {
-                  if (chosedImg < 1) {
-                    setChosedImg(1);
-                  }
-                }}
-                alt=""
-              />
+              {productData?.image?.productPhotos.length > 1 && (
+                <img
+                  src={rightArrow}
+                  className={styles.rightArrow}
+                  onClick={() => {
+                    if (chosedImg < 1) {
+                      setChosedImg(1);
+                    }
+                  }}
+                  alt=""
+                />
+              )}
             </div>
           </div>
           <div className={styles.infos}>
