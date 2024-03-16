@@ -38,8 +38,8 @@ function Footer() {
         <div className={styles.inf}>
           <p className={styles.title}>Terms and conditions</p>
           <ul>
-            <Link>Return Policy</Link>
-            <Link>Privacy Policy</Link>
+            <Link to={"/returnPolicy"}>Return Policy</Link>
+            <Link to={"/privacyPolicy"}>Privacy Policy</Link>
           </ul>
         </div>
         <div className={styles.inf}>

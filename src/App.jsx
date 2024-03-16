@@ -6,6 +6,8 @@ import loadingCircle from "/icons8-loading-circle.gif";
 const Home = lazy(() => import("./Home"));
 const ViewCollection = lazy(() => import("./ViewCollection"));
 const ProductDetails = lazy(() => import("./ProductDetails"));
+const ReturnPolicy = lazy(() => import("./ReturnPolicy"));
+const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
 const WishList = lazy(() => import("./WishList"));
 const Login = lazy(() => import("./Login"));
 const Dashboard = lazy(() => import("./Dashboard"));
@@ -67,6 +69,14 @@ function App() {
             <Route
               path="/product/:id"
               element={<ProductDetails isFixed={isFixed} />}
+            />
+            <Route
+              path="/returnPolicy"
+              element={<ReturnPolicy isFixed={isFixed} />}
+            />
+            <Route
+              path="/privacyPolicy"
+              element={<PrivacyPolicy isFixed={isFixed} />}
             />
             <Route path="/wishlist" element={<WishList isFixed={isFixed} />} />
             <Route path="/login" element={<Login />} />

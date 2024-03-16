@@ -1,0 +1,26 @@
+.workingarea {
+  width: 80%;
+  margin: 20px auto;
+  min-height: 80vh;
+}
+.p {
+  margin: 20px 0px;
+  color: white;
+  background-color: rgb(54, 54, 54);
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.pr {
+  color: rgb(54, 54, 54);
+  margin-top: 20px;
+}
+@media screen and (max-width: 900px) {
+  .workingarea {
+    width: 90%;
+  }
+  .p {
+    text-align: center;
+    line-height: 30px;
+  }
+}
