@@ -1,13 +1,22 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./sidebar.module.css";
 import { themeContext } from "./ThemeContext";
 import closeMenuIcon from "/closeMenu.svg";
 import rightArrow from "/rightArrow.svg";
+import { apiLautusAnimeCate } from "../api/apiLautusAnimeCate";
 
 function Sidebar() {
   const { activeSide, setActiveSide } = useContext(themeContext);
   const [showSubAnime, setShowSubAnime] = useState(false);
+  const [animeCat, setAnimeCat] = useState([]);
+  useEffect(() => {
+    async function getDataCat() {
+      let res = await apiLautusAnimeCate();
+      setAnimeCat(res);
+    }
+    getDataCat();
+  }, []);
 
   return (
     <div className={activeSide ? styles.sideBar : styles.active}>
@@ -34,30 +43,14 @@ function Sidebar() {
           </li>
           {showSubAnime && (
             <ul className={styles.subAnime}>
-              <Link
-                to={"/collection/anime/onepiece"}
-                onClick={() => setActiveSide(false)}
-              >
-                <li>One piece</li>
-              </Link>
-              <Link
-                to={"/collection/anime/attack_on_titans"}
-                onClick={() => setActiveSide(false)}
-              >
-                <li>Attack on titan</li>
-              </Link>
-              <Link
-                to={"/collection/anime/hunter-x-hunter"}
-                onClick={() => setActiveSide(false)}
-              >
-                <li>Hunter X Hunter</li>
-              </Link>
-              <Link
-                to={"/collection/anime/jujusto-kaisen"}
-                onClick={() => setActiveSide(false)}
-              >
-                <li>Jujusto Kaisen</li>
-              </Link>
+              {animeCat.map((an) => (
+                <Link
+                  to={`/collection/anime/${an.title}`}
+                  onClick={() => setActiveSide(false)}
+                >
+                  <li>{an.title}</li>
+                </Link>
+              ))}
             </ul>
           )}
           <li>

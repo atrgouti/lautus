@@ -6,12 +6,14 @@ import loadingCircle from "/icons8-loading-circle.gif";
 const Home = lazy(() => import("./Home"));
 const ViewCollection = lazy(() => import("./ViewCollection"));
 const ProductDetails = lazy(() => import("./ProductDetails"));
+const AddAnimeCategory = lazy(() => import("./AddAnimeCategory"));
 const ReturnPolicy = lazy(() => import("./ReturnPolicy"));
 const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
 const WishList = lazy(() => import("./WishList"));
 const Login = lazy(() => import("./Login"));
 const Dashboard = lazy(() => import("./Dashboard"));
 const AddProduct = lazy(() => import("./AddProduct"));
+const AnimeCategoriesShow = lazy(() => import("./AnimeCategoriesShow"));
 const NotFound = lazy(() => import("./NotFound"));
 
 function App() {
@@ -82,6 +84,14 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/Dashboard/AddProduct" element={<AddProduct />} />
+            <Route
+              path="/Dashboard/AddAnimeCategory"
+              element={<AddAnimeCategory />}
+            />
+            <Route
+              path="/Dashboard/AnimeCategoriesShow"
+              element={<AnimeCategoriesShow />}
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

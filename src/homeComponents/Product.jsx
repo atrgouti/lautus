@@ -1,6 +1,6 @@
 import tshirt from "../productImages/tupac-white-tshirt.jpg";
 import styles from "./product.module.css";
-function Product({ title, image, bg }) {
+function Product({ title, image, bg, show = true }) {
   return (
     <div
       className={styles.product}
@@ -10,24 +10,28 @@ function Product({ title, image, bg }) {
       }}
     >
       <img src={image} alt="" />
-      <p>{title}</p>
-      <p
-        style={{
-          paddingBottom: "15px",
-          color: bg === "black" ? "white" : "black",
-        }}
-      >
-        149 MAD
-      </p>
-      <button
-        style={{
-          backgroundColor: bg,
-          border: `1px solid ${bg === "black" ? "white" : "black"}`,
-          color: bg === "black" ? "white" : "black",
-        }}
-      >
-        BUY IT NOW
-      </button>
+      {show && (
+        <>
+          <p>{title}</p>
+          <p
+            style={{
+              paddingBottom: "15px",
+              color: bg === "black" ? "white" : "black",
+            }}
+          >
+            149 MAD
+          </p>
+          <button
+            style={{
+              backgroundColor: bg,
+              border: `1px solid ${bg === "black" ? "white" : "black"}`,
+              color: bg === "black" ? "white" : "black",
+            }}
+          >
+            BUY IT NOW
+          </button>{" "}
+        </>
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import Footer from "./generalComponents/Footer";
 import ActiveFilter from "./generalComponents/ActiveFilter";
 import { useEffect, useState, useContext } from "react";
 import { apiLautusProducts } from "./api/apiLautusProducts";
+import { apiLautusAnimeCate } from "./api/apiLautusAnimeCate";
 
 //importing
 import { themeContext } from "./generalComponents/ThemeContext";
@@ -19,6 +20,7 @@ function Home({ isFixed }) {
   const [matchy, setMatchy] = useState([]);
   const [tvShow, setTvShow] = useState([]);
   const [gym, setGym] = useState([]);
+  const [animeCate, setAnimeCate] = useState([]);
   useEffect(() => {
     async function getData() {
       let res = await apiLautusProducts("none", setIsLoading);
@@ -31,10 +33,27 @@ function Home({ isFixed }) {
     getData();
   }, []);
 
+  // fetch anime categories
+  useEffect(() => {
+    async function getCate() {
+      let res = await apiLautusAnimeCate();
+      setAnimeCate(res);
+    }
+    getCate();
+  }, []);
+
   useEffect(function () {
     window.scrollTo(0, 0);
   }, []);
   const { activeSide, activeSearch, activeCard } = useContext(themeContext);
+
+  const animecatiz = [
+    { id: 1, anime: "onepiece", img: "/attackCompersed.jpg" },
+    { id: 1, anime: "onepiece", img: "/attackOnTitans.jpg" },
+    { id: 1, anime: "onepiece", img: "/compressOnePiece.webp" },
+    { id: 1, anime: "onepiece", img: "/narutoCompres.jpg" },
+    { id: 1, anime: "onepiece", img: "/compressOnePiece.webp" },
+  ];
 
   return (
     <>
@@ -51,7 +70,11 @@ function Home({ isFixed }) {
           }}
           alt=""
         />
-        <AnimeCategories />
+        <AnimeCategories
+          header={"Anime Categories"}
+          data={animeCate}
+          bg={"black"}
+        />
         <div style={{ backgroundColor: "black" }}>
           {musicalBands && (
             <ProductsCarousel

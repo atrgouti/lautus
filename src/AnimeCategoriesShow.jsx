@@ -3,11 +3,11 @@ import supabase from "../src/api/supabase";
 import withAuthCheck from "./withAuthCheck";
 import styles from "./dashboard.module.css";
 import { Link } from "react-router-dom";
-import { apiLautusProducts } from "./api/apiLautusProducts";
+import { apiLautusAnimeCate } from "./api/apiLautusAnimeCate";
 import loadingCircle from "/icons8-loading-circle.gif";
 
-function Dashboard() {
-  const [mydata, setMyData] = useState([]);
+function AnimeCategoriesShow() {
+  const [mydatacate, setMyDataCate] = useState([]);
   const [loading, setLoading] = useState(false);
 
   //handle sign out
@@ -25,11 +25,11 @@ function Dashboard() {
   };
   //get data
   useEffect(() => {
-    async function getData() {
-      let res = await apiLautusProducts("none", setLoading);
-      setMyData(res);
+    async function getDataCate() {
+      let res = await apiLautusAnimeCate();
+      setMyDataCate(res);
     }
-    getData();
+    getDataCate();
   }, []);
 
   const handleDelete = async (id) => {
@@ -56,7 +56,9 @@ function Dashboard() {
   return (
     <div>
       <div className={styles.nav}>
-        <h2 style={{ color: "white", margin: "20px" }}>Dashboard</h2>
+        <Link to={"/Dashboard"}>
+          <h2 style={{ color: "white", margin: "20px" }}>Dashboard</h2>
+        </Link>
         <div
           style={{
             display: "flex",
@@ -65,11 +67,8 @@ function Dashboard() {
             alignItems: "center",
           }}
         >
-          <Link to="/Dashboard/AddProduct">
-            <button>Add New Product</button>
-          </Link>
-          <Link to="/Dashboard/AnimeCategoriesShow">
-            <button>Show Anime Categories</button>
+          <Link to="/Dashboard/AddAnimeCategory">
+            <button>Add New Anime Category</button>
           </Link>
           <button onClick={() => handleSignOut()}>Sign out</button>
         </div>
@@ -79,7 +78,7 @@ function Dashboard() {
       ) : (
         <div className={styles.showProducts}>
           <h4 style={{ textAlign: "center", margin: "20px" }}>
-            currently you have {mydata.length} items in your website
+            currently you have {mydatacate.length} anime categories
           </h4>
           <table
             style={{
@@ -97,27 +96,18 @@ function Dashboard() {
                   Name
                 </th>
                 <th style={{ border: "2px solid black", padding: "10px" }}>
-                  Initial Price
-                </th>
-                <th style={{ border: "2px solid black", padding: "10px" }}>
-                  Image
-                </th>
-                <th style={{ border: "2px solid black", padding: "10px" }}>
-                  Category
+                  image
                 </th>
               </tr>
             </thead>
             <tbody>
-              {mydata.map((p) => (
-                <tr key={p.product_id}>
+              {mydatacate.map((p) => (
+                <tr key={p.id}>
                   <td style={{ border: "2px solid black", padding: "10px" }}>
-                    {p.product_id}
+                    {p?.id}
                   </td>
                   <td style={{ border: "2px solid black", padding: "10px" }}>
-                    {p.name}
-                  </td>
-                  <td style={{ border: "2px solid black", padding: "10px" }}>
-                    {p.price} MAD
+                    {p?.title}
                   </td>
                   <td style={{ border: "2px solid black", padding: "10px" }}>
                     <img
@@ -126,12 +116,9 @@ function Dashboard() {
                         height: "auto",
                         width: "100px",
                       }} // Ensure image is responsive
-                      src={p.image?.productPhotos[0]}
+                      src={p?.img}
                       alt=""
                     />
-                  </td>
-                  <td style={{ border: "2px solid black", padding: "10px" }}>
-                    {p.category}
                   </td>
                 </tr>
               ))}
@@ -143,4 +130,4 @@ function Dashboard() {
   );
 }
 
-export default withAuthCheck(Dashboard);
+export default withAuthCheck(AnimeCategoriesShow);

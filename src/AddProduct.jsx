@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import supabase from "../src/api/supabase";
 import withAuthCheck from "./withAuthCheck";
 import styles from "./dashboard.module.css";
 import { Link } from "react-router-dom";
 import loadingCircle from "/icons8-loading-circle.gif";
 import { useNavigate } from "react-router-dom";
+import { apiLautusAnimeCate } from "./api/apiLautusAnimeCate";
 
 function Dashboard() {
   const [name, setName] = useState("");
@@ -21,6 +22,17 @@ function Dashboard() {
   const [mug, setMug] = useState(null);
   const [buckets, setBuckets] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  //anime categories fetching
+  const [animecatig, setAnimeCatig] = useState([]);
+  useEffect(() => {
+    async function getDataC() {
+      let res = await apiLautusAnimeCate();
+      setAnimeCatig(res);
+    }
+    getDataC();
+  }, []);
+
   const navigate = useNavigate();
 
   //handle sign out
@@ -56,7 +68,7 @@ function Dashboard() {
       // Upload front image to Supabase Storage
       const { data: frontImageData, error: frontImageError } =
         await supabase.storage
-          .from("anime")
+          .from(`${category}`)
           .upload(`${frontImage.name}`, frontImage);
 
       if (frontImageError) {
@@ -67,7 +79,7 @@ function Dashboard() {
       if (backImage !== null) {
         const { data: backImageData, error: backImageError } =
           await supabase.storage
-            .from("anime")
+            .from(`${category}`)
             .upload(`${backImage.name}`, backImage);
 
         if (backImageError) {
@@ -81,7 +93,7 @@ function Dashboard() {
         price: parseInt(price), // Convert price to integer
         image: {
           productPhotos: [
-            `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/${frontImage.name}`,
+            `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/${category}/${frontImage.name}`,
           ],
         },
         description,
@@ -101,7 +113,7 @@ function Dashboard() {
 
       if (backImage !== null) {
         product.image.productPhotos.push(
-          `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/anime/${backImage.name}`
+          `https://ldwmhuavgjpuihqeenqk.supabase.co/storage/v1/object/public/${category}/${backImage.name}`
         );
       }
 
@@ -558,11 +570,9 @@ function Dashboard() {
                     }}
                   >
                     <option value="none">none</option>
-                    <option value="onepiece">onepiece</option>
-                    <option value="hunter-x-hunter">hunter-x-hunter</option>
-                    <option value="attack_on_titans">attack_on_titans</option>
-                    <option value="jujusto-kaisen">jujusto-kaisen</option>
-                    <option value="naruto">naruto</option>
+                    {animecatig.map((p) => (
+                      <option value={`${p.title}`}>{p.title}</option>
+                    ))}
                   </select>
                 </td>
               </tr>
