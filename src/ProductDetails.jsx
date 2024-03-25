@@ -606,7 +606,7 @@ function ProductDetails({ isFixed }) {
                   style={{ margin: "5px", cursor: "pointer" }}
                   onClick={() => setSizeGuide(true)}
                 >
-                  Size Guide
+                  Size Guidee
                 </p>
               </div>
             </div>
