@@ -153,16 +153,18 @@ function ViewCollection({ isFixed }) {
             onClick={() => handleShowMore()}
             style={{
               padding: "12px 40px",
-              backgroundColor: "#253529",
-              color: "white",
+              backgroundColor: "black",
+              color: "whitesmoke",
               textAlign: "center",
               margin: "20px 0px",
               cursor: "pointer",
               border: "none",
+              fontWeight: "bold",
+              letterSpacing: "2px",
               // borderRadius: "10px",
             }}
           >
-            show more
+            SHOW MORE
           </button>
         )}
       </div>
