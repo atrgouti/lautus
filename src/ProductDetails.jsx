@@ -781,6 +781,18 @@ function ProductDetails({ isFixed }) {
                   });
                 }
 
+                if (selectedCity.length === 0)
+                  return toast.error("Please choose a city", {
+                    position: "bottom-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+
                 addItemToCart(
                   productData.product_id,
                   productData.name,
