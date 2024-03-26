@@ -12,7 +12,6 @@ import { themeContext } from "./generalComponents/ThemeContext";
 import { Link, useParams } from "react-router-dom";
 
 import { apiLautusProductsPagination } from "./api/apiLautusProductsPagination";
-import { apiLautusProducts } from "./api/apiLautusProducts";
 
 function ViewCollection({ isFixed }) {
   const { activeSide, activeSearch, activeCard } = useContext(themeContext);
@@ -20,68 +19,19 @@ function ViewCollection({ isFixed }) {
   const [myData, setMyData] = useState([]);
   const { collectionName, animeName } = useParams();
   const [sortBy, setOrderBy] = useState("");
-  const [offset, setOffSet] = useState(0);
-  const [notNicessery, setNotNicessery] = useState(false);
-  const [dataLength, setDataLength] = useState(0);
 
-  console.log(dataLength);
-
-  useEffect(() => {
-    if (offset === 0) {
-      async function getData() {
-        let res = await apiLautusProductsPagination(
-          collectionName,
-          setIsLOading,
-          animeName,
-          sortBy,
-          offset
-        );
-        setMyData(res);
-      }
-      getData();
-    }
-  }, [collectionName, sortBy, animeName]);
-
-  useEffect(() => {
-    if (offset > 0) {
-      async function getData() {
-        try {
-          const newData = await apiLautusProductsPagination(
-            collectionName,
-            setNotNicessery,
-            animeName,
-            sortBy,
-            offset,
-            5
-          );
-
-          setMyData((prevData) => [...prevData, ...newData]); // Append only new items to myData
-        } catch (error) {
-          console.error(error);
-        }
-      }
-
-      getData();
-    }
-  }, [collectionName, sortBy, animeName, offset]); // Include offset as a dependency
-
-  // get the length
   useEffect(() => {
     async function getData() {
-      let res = await apiLautusProducts(
+      let res = await apiLautusProductsPagination(
         collectionName,
         setIsLOading,
         animeName,
         sortBy
       );
-      setDataLength(res.length);
+      setMyData(res);
     }
     getData();
   }, [collectionName, sortBy, animeName]);
-
-  const handleShowMore = () => {
-    setOffSet((prevOffset) => prevOffset + 5); // Increment offset by 10
-  };
 
   useEffect(function () {
     window.scrollTo(0, 0);
@@ -141,31 +91,7 @@ function ViewCollection({ isFixed }) {
           <p>no avaliable items.</p>
         </div>
       )}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        {dataLength > myData.length && (
-          <button
-            onClick={() => handleShowMore()}
-            style={{
-              padding: "12px 40px",
-              backgroundColor: "#253529",
-              color: "white",
-              textAlign: "center",
-              margin: "20px 0px",
-              cursor: "pointer",
-              border: "none",
-              // borderRadius: "10px",
-            }}
-          >
-            show more
-          </button>
-        )}
-      </div>
+
       <Footer />
     </div>
   );

@@ -804,15 +804,19 @@ function ProductDetails({ isFixed }) {
         <dir className={styles.description}>
           <h2 style={{ padding: "20px" }}>Description</h2>
           <div className={styles.desc}>
-            <p>Composition:</p>
             <br />
             <p>
-              - Material: 220 GSM{" "}
-              {selectedClothing === "sweetshirt" ? "70%" : "100%"} Cotton
+              <b>Material:</b> Made from{" "}
+              {selectedClothing === "sweetshirt" ? "70%" : "100%"} Cotton,
+              offering superior softness and breathability, ensuring all-day
+              comfort in any season.
             </p>
-            <p>- Fabric Type: Washed</p>
-            <p>- Print Quality: High-quality Embroidery</p>
-            <p>- Construction: Double-needle Stitched Sleeve and Bottom</p>
+            <p>
+              <b>Printing Technology:</b> DTF printing technology, our designs
+              are rendered with exceptional clarity, color vibrancy, and detail.
+              DTF printing ensures long-lasting, fade-resistant prints that
+              stand the test of time.
+            </p>
           </div>
         </dir>
       </div>
