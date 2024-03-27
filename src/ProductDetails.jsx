@@ -665,7 +665,8 @@ function ProductDetails({ isFixed }) {
                 <option value="">Choose...</option>
                 <option value="hoodie">Hoodies</option>
                 <option value="sweetshirt">Sweatshirts</option>
-                <option value="tshirt">T-shirts</option>
+                <option value="tshirt">Normale Fit T-shirt</option>
+                <option value="oversized">Oversized T-shirt</option>
                 <option value="cap">Caps</option>
                 <option value="buckets">Buckets</option>
                 <option value="mug">Mugs</option>

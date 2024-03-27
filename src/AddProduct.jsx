@@ -103,6 +103,7 @@ function Dashboard() {
           prices: {
             hoodie: parseInt(hoodie),
             tshirt: parseInt(tshirt),
+            oversized: parseInt(tshirt) + 15,
             sweetshirt: parseInt(sweetShirt),
             mug: parseInt(mug),
             cap: parseInt(cap),
