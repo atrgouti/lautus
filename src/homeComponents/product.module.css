@@ -1,6 +1,6 @@
 .product {
   height: auto;
-  width: 250px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,4 +17,12 @@
 .product button {
   padding: 10px 20px;
   cursor: pointer;
+}
+.product button {
+  border-bottom: none;
+}
+@media screen and (max-width: 900px) {
+  .product {
+    width: 100%;
+  }
 }

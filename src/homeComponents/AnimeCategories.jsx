@@ -1,6 +1,6 @@
 import Carousel from "@itseasy21/react-elastic-carousel";
 import styles from "./productCarousel.module.css";
-import Product from "./Product";
+import ProductCategoriesDiplucate from "./ProductCategoriesDiplucate";
 import { Link } from "react-router-dom";
 
 function AnimeCategories({ header, data, bg }) {
@@ -37,7 +37,7 @@ function AnimeCategories({ header, data, bg }) {
             data.map((item) => (
               <Link key={item.id} to={`/collection/anime/${item.title}`}>
                 <div style={{ margin: "0 30px" }}>
-                  <Product
+                  <ProductCategoriesDiplucate
                     show={false}
                     key={item.id}
                     title={item.title}
