@@ -68,12 +68,12 @@ function ProductDetails({ isFixed }) {
   const avaliableColors = [
     "whitesmoke",
     "black",
-    "#A10613",
-    "red",
-    "#6C9FE7",
-    "gray",
-    "#964B00",
-    "#EEDEC5",
+    "#81001c",
+    "#cb0101",
+    "#74adfc",
+    "#8c8d91",
+    "#673d3f",
+    "#c9b89e",
   ];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
