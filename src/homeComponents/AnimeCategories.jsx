@@ -35,7 +35,7 @@ function AnimeCategories({ header, data, bg }) {
         >
           {data.length > 0 &&
             data.map((item) => (
-              <Link to={`/collection/anime/${item.title}`}>
+              <Link key={item.id} to={`/collection/anime/${item.title}`}>
                 <div style={{ margin: "0 30px" }}>
                   <Product
                     show={false}

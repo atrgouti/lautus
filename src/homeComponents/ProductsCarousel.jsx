@@ -33,7 +33,7 @@ function ProductsCarousel({ header, data, bg }) {
         >
           {data.length > 0 &&
             data.map((item) => (
-              <Link to={`/product/${item.product_id}`}>
+              <Link key={item.product_id} to={`/product/${item.product_id}`}>
                 <Product
                   key={item.product_id}
                   title={item.name}

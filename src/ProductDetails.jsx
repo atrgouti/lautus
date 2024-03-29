@@ -19,12 +19,14 @@ import check from "/check.svg";
 
 //api
 import { apiSelectProduct } from "./api/selectProduct";
+import { apiGetStock } from "./api/apiGetStock";
 
 // tostify
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import SelectWithSearch from "./SelectWithSearch";
+import { data } from "autoprefixer";
 
 function ProductDetails({ isFixed }) {
   const [chosedImg, setChosedImg] = useState(0);
@@ -32,6 +34,24 @@ function ProductDetails({ isFixed }) {
   const [chosedColor, setChosedColer] = useState("");
   const [chosedSize, setChosedSize] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [stockchek, setStockCheck] = useState([]);
+  const [selectedClothing, setSelectedClothing] = useState("hoodie");
+
+  //get stock
+  useEffect(function () {
+    async function getData() {
+      const data = await apiGetStock();
+      setStockCheck(data);
+    }
+    getData();
+  }, []);
+
+  const avaliableInStock = stockchek?.some(
+    (item) =>
+      item.type === selectedClothing &&
+      item.size === chosedSize &&
+      item.instock === false
+  );
 
   const {
     activeSide,
@@ -46,12 +66,14 @@ function ProductDetails({ isFixed }) {
     setSizeGuide,
   } = useContext(themeContext);
   const avaliableColors = [
-    "black",
     "whitesmoke",
+    "black",
+    "#A10613",
     "red",
-    "pink",
-    "green",
-    "orange",
+    "#6C9FE7",
+    "gray",
+    "#964B00",
+    "#EEDEC5",
   ];
   const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
@@ -74,6 +96,22 @@ function ProductDetails({ isFixed }) {
   }, []);
 
   function handleOrder(id, title, color, size, type, quantity) {
+    if (avaliableInStock) {
+      return toast.error(
+        `The the size ${chosedSize} in ${selectedClothing} is currently out of Stock`,
+        {
+          position: "bottom-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+    }
+
     if (color.length === 0)
       return toast.error("Please choose a color", {
         position: "bottom-center",
@@ -142,8 +180,6 @@ function ProductDetails({ isFixed }) {
 
     window.location.href = whatsappURL;
   }
-
-  const [selectedClothing, setSelectedClothing] = useState("hoodie");
 
   const handleClothingChange = (event) => {
     setSelectedClothing(event.target.value);
@@ -673,7 +709,7 @@ function ProductDetails({ isFixed }) {
               </select>
             </div>
             <div className={styles.size}>
-              <h3>Color :</h3>
+              <h3>Size :</h3>
               <div style={{ display: "flex", marginLeft: "20px" }}>
                 {avaliableSizes.map((size) => (
                   <p
@@ -689,6 +725,19 @@ function ProductDetails({ isFixed }) {
                 ))}
               </div>
             </div>
+            {avaliableInStock && (
+              <p style={{ marginTop: "10px" }}>
+                The the size{" "}
+                <span style={{ color: "red" }}>
+                  <b>{chosedSize}</b>
+                </span>{" "}
+                in{" "}
+                <span style={{ color: "red" }}>
+                  <b>{selectedClothing}</b>
+                </span>{" "}
+                is currently out of Stock
+              </p>
+            )}
             {/* shipping  */}
             <div style={{ margin: "20px 0px" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -757,6 +806,22 @@ function ProductDetails({ isFixed }) {
             <button
               className={styles.addToCard}
               onClick={() => {
+                if (avaliableInStock) {
+                  return toast.error(
+                    `The the size ${chosedSize} in ${selectedClothing} is currently out of Stock`,
+                    {
+                      position: "bottom-center",
+                      autoClose: 4000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    }
+                  );
+                }
+
                 if (chosedColor.length === 0) {
                   return toast.error("Please choose a color", {
                     position: "bottom-center",
