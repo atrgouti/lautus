@@ -45,7 +45,7 @@ function Footer() {
         <div className={styles.inf}>
           <p className={styles.title}>Contact-us</p>
           <ul>
-            <Link>Contact Us</Link>
+            <Link to={"/contactus"}>Contact Us</Link>
           </ul>
         </div>
         <div className={styles.inf}>

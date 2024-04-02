@@ -9,6 +9,7 @@ const ProductDetails = lazy(() => import("./ProductDetails"));
 const AddAnimeCategory = lazy(() => import("./AddAnimeCategory"));
 const ReturnPolicy = lazy(() => import("./ReturnPolicy"));
 const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
+const ContactUs = lazy(() => import("./ContactUs"));
 const WishList = lazy(() => import("./WishList"));
 const Login = lazy(() => import("./Login"));
 const Dashboard = lazy(() => import("./Dashboard"));
@@ -79,6 +80,10 @@ function App() {
             <Route
               path="/privacyPolicy"
               element={<PrivacyPolicy isFixed={isFixed} />}
+            />
+            <Route
+              path="/ContactUs"
+              element={<ContactUs isFixed={isFixed} />}
             />
             <Route path="/wishlist" element={<WishList isFixed={isFixed} />} />
             <Route path="/login" element={<Login />} />
