@@ -802,7 +802,7 @@ function ProductDetails({ isFixed }) {
                 handleOrder(
                   productData.product_id,
                   productData.name,
-                  chosedColor,
+                  chosedColor.colorCode,
                   chosedSize,
                   selectedClothing,
                   quantity
