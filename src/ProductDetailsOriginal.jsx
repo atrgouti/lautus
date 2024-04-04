@@ -46,16 +46,11 @@ function ProductDetails({ isFixed }) {
     getData();
   }, []);
 
-  useEffect(
-    function () {
-      if (stockchek.length > 0) {
-        const firstSize = stockchek.find(
-          (c) => c.type === selectedClothing && c.instock === true
-        );
-        setChosedSize(firstSize.size);
-      }
-    },
-    [selectedClothing, stockchek]
+  const avaliableInStock = stockchek?.some(
+    (item) =>
+      item.type === selectedClothing &&
+      item.size === chosedSize &&
+      item.instock === false
   );
 
   const {
@@ -70,48 +65,17 @@ function ProductDetails({ isFixed }) {
     sizeGuide,
     setSizeGuide,
   } = useContext(themeContext);
-  // const avaliableColors = [
-  //   "whitesmoke",
-  //   "black",
-  //   "#81001c",
-  //   "#cb0101",
-  //   "#74adfc",
-  //   "#8c8d91",
-  //   "#673d3f",
-  //   "#c9b89e",
-  // ];
-  const [avaliableColors, setAvaliableColors] = useState([]);
-  useEffect(
-    function () {
-      const avaliable = stockchek?.filter(
-        (c) =>
-          c.type === selectedClothing &&
-          c.size === chosedSize &&
-          c.instock === true
-      );
-      setAvaliableColors(avaliable);
-    },
-    [selectedClothing, chosedSize, stockchek]
-  );
-
-  // const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
-  const avaliableSizes = stockchek?.filter(
-    (c) => c.type === selectedClothing && c.instock === true
-  );
-
-  const [uniqueSizes, setUniqueSizes] = useState([]);
-  useEffect(
-    function () {
-      const uniqueSize = [];
-      avaliableSizes.forEach((item) => {
-        if (!uniqueSize.includes(item.size)) {
-          uniqueSize.push(item.size);
-        }
-      });
-      setUniqueSizes(uniqueSize);
-    },
-    [selectedClothing, chosedColor, chosedSize]
-  );
+  const avaliableColors = [
+    "whitesmoke",
+    "black",
+    "#81001c",
+    "#cb0101",
+    "#74adfc",
+    "#8c8d91",
+    "#673d3f",
+    "#c9b89e",
+  ];
+  const avaliableSizes = ["S", "M", "L", "XL", "XXL"];
 
   const { id } = useParams();
   const [productData, setProductData] = useState([]);
@@ -132,8 +96,36 @@ function ProductDetails({ isFixed }) {
   }, []);
 
   function handleOrder(id, title, color, size, type, quantity) {
+    if (avaliableInStock) {
+      return toast.error(
+        `The the size ${chosedSize} in ${selectedClothing} is currently out of Stock`,
+        {
+          position: "bottom-center",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+    }
+
     if (color.length === 0)
       return toast.error("Please choose a color", {
+        position: "bottom-center",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+
+    if (size.length === 0)
+      return toast.error("Please choose a Size", {
         position: "bottom-center",
         autoClose: 4000,
         hideProgressBar: false,
@@ -197,10 +189,6 @@ function ProductDetails({ isFixed }) {
   // const cities = {
   //   rabat: 45,
   // };
-
-  // setChosedSize(
-  //   stockchek?.find((c) => c.type === selectedClothing && c.instock === true)
-  // );
   const cities = {
     Afourar: 39,
     Afra: 39,
@@ -567,11 +555,7 @@ function ProductDetails({ isFixed }) {
                 alt=""
               /> */}
               {productData?.image?.productPhotos?.map((img, idx) => (
-                <img
-                  key={idx}
-                  onClick={() => setChosedImg(idx)}
-                  src={img}
-                ></img>
+                <img onClick={() => setChosedImg(idx)} src={img}></img>
               ))}
             </div>
             <div className={styles.bg}>
@@ -665,13 +649,12 @@ function ProductDetails({ isFixed }) {
             <div className={styles.color}>
               <h3>Color :</h3>
               <div style={{ display: "flex", marginLeft: "20px" }}>
-                {avaliableColors?.map((color) => (
+                {avaliableColors.map((color) => (
                   <div
-                    key={color.colorCode}
                     style={{
                       height: "25px",
                       width: "25px",
-                      backgroundColor: `${color.colorCode}`,
+                      backgroundColor: `${color}`,
                       borderRadius: "4px",
                       margin: "0px 5px",
                       display: "flex",
@@ -725,32 +708,36 @@ function ProductDetails({ isFixed }) {
                 <option value="mug">Mugs</option>
               </select>
             </div>
-            {selectedClothing === "hoodie" ||
-            selectedClothing === "tshirt" ||
-            selectedClothing === "sweetshirt" ||
-            selectedClothing === "oversized" ? (
-              <div className={styles.size}>
-                <h3>Size :</h3>
-                <div style={{ display: "flex", marginLeft: "20px" }}>
-                  {uniqueSizes?.map((size) => (
-                    <p
-                      key={size}
-                      onClick={() => setChosedSize(size)}
-                      style={{
-                        border: `1px solid ${
-                          chosedSize === size ? "black" : "rgb(228, 228, 228)"
-                        }`,
-                      }}
-                    >
-                      {size}
-                    </p>
-                  ))}
-                </div>
+            <div className={styles.size}>
+              <h3>Size :</h3>
+              <div style={{ display: "flex", marginLeft: "20px" }}>
+                {avaliableSizes.map((size) => (
+                  <p
+                    onClick={() => setChosedSize(size)}
+                    style={{
+                      border: `1px solid ${
+                        chosedSize === size ? "black" : "rgb(228, 228, 228)"
+                      }`,
+                    }}
+                  >
+                    {size}
+                  </p>
+                ))}
               </div>
-            ) : (
-              <div></div>
+            </div>
+            {avaliableInStock && (
+              <p style={{ marginTop: "10px" }}>
+                The the size{" "}
+                <span style={{ color: "red" }}>
+                  <b>{chosedSize}</b>
+                </span>{" "}
+                in{" "}
+                <span style={{ color: "red" }}>
+                  <b>{selectedClothing}</b>
+                </span>{" "}
+                is currently out of Stock
+              </p>
             )}
-
             {/* shipping  */}
             <div style={{ margin: "20px 0px" }}>
               <div style={{ display: "flex", alignItems: "center" }}>
@@ -819,8 +806,36 @@ function ProductDetails({ isFixed }) {
             <button
               className={styles.addToCard}
               onClick={() => {
+                if (avaliableInStock) {
+                  return toast.error(
+                    `The the size ${chosedSize} in ${selectedClothing} is currently out of Stock`,
+                    {
+                      position: "bottom-center",
+                      autoClose: 4000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    }
+                  );
+                }
+
                 if (chosedColor.length === 0) {
                   return toast.error("Please choose a color", {
+                    position: "bottom-center",
+                    autoClose: 4000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                  });
+                }
+                if (chosedSize.length === 0) {
+                  return toast.error("Please choose a Size", {
                     position: "bottom-center",
                     autoClose: 4000,
                     hideProgressBar: false,

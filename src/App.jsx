@@ -10,10 +10,14 @@ const AddAnimeCategory = lazy(() => import("./AddAnimeCategory"));
 const ReturnPolicy = lazy(() => import("./ReturnPolicy"));
 const PrivacyPolicy = lazy(() => import("./PrivacyPolicy"));
 const ContactUs = lazy(() => import("./ContactUs"));
+const AboutUs = lazy(() => import("./AboutUs"));
+const ShippingInfo = lazy(() => import("./ShippingInfo"));
+const PaymentInfo = lazy(() => import("./PaymentInfo"));
 const WishList = lazy(() => import("./WishList"));
 const Login = lazy(() => import("./Login"));
 const Dashboard = lazy(() => import("./Dashboard"));
 const AddProduct = lazy(() => import("./AddProduct"));
+const AddColor = lazy(() => import("./AddColor"));
 const AnimeCategoriesShow = lazy(() => import("./AnimeCategoriesShow"));
 const NotFound = lazy(() => import("./NotFound"));
 
@@ -85,6 +89,15 @@ function App() {
               path="/ContactUs"
               element={<ContactUs isFixed={isFixed} />}
             />
+            <Route path="/AboutUs" element={<AboutUs isFixed={isFixed} />} />
+            <Route
+              path="/ShippingInfo"
+              element={<ShippingInfo isFixed={isFixed} />}
+            />
+            <Route
+              path="/PaymentInfo"
+              element={<PaymentInfo isFixed={isFixed} />}
+            />
             <Route path="/wishlist" element={<WishList isFixed={isFixed} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/Dashboard" element={<Dashboard />} />
@@ -93,6 +106,7 @@ function App() {
               path="/Dashboard/AddAnimeCategory"
               element={<AddAnimeCategory />}
             />
+            <Route path="/Dashboard/addcolor" element={<AddColor />} />
             <Route
               path="/Dashboard/AnimeCategoriesShow"
               element={<AnimeCategoriesShow />}

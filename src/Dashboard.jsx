@@ -71,6 +71,9 @@ function Dashboard() {
           <Link to="/Dashboard/AnimeCategoriesShow">
             <button>Show Anime Categories</button>
           </Link>
+          <Link to="/Dashboard/addcolor">
+            <button>ADD NEW COLOR</button>
+          </Link>
           <button onClick={() => handleSignOut()}>Sign out</button>
         </div>
       </div>

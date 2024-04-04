@@ -51,9 +51,9 @@ function Footer() {
         <div className={styles.inf}>
           <p className={styles.title}>About The Store</p>
           <ul>
-            <Link>About Us</Link>
-            <Link>How to pay</Link>
-            <Link>Shipping & Delivery</Link>
+            <Link to={"/AboutUs"}>About Us</Link>
+            <Link to={"/PaymentInfo"}>How to pay</Link>
+            <Link to={"/ShippingInfo"}>Shipping & Delivery</Link>
           </ul>
         </div>
       </div>
