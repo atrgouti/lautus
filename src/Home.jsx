@@ -3,7 +3,7 @@ import Announce from "./generalComponents/Announce";
 import Navbar from "./generalComponents/Navbar";
 import AnimeCategories from "./homeComponents/AnimeCategories";
 import ProductsCarousel from "./homeComponents/ProductsCarousel";
-import cover from "/bgNew.jpg";
+import cover from "/correctCover.jpg";
 import Footer from "./generalComponents/Footer";
 import ActiveFilter from "./generalComponents/ActiveFilter";
 import { useEffect, useState, useContext } from "react";
