@@ -78,7 +78,7 @@ function Home({ isFixed }) {
         <div style={{ backgroundColor: "black" }}>
           {musicalBands && (
             <ProductsCarousel
-              header={"Musical Brand Collection"}
+              header={"Musical Band Collection"}
               data={musicalBands}
               bg={"black"}
             />
