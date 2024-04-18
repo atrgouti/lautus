@@ -536,6 +536,9 @@ function Dashboard() {
                 >
                   <option value="musical-bands">musical-bands</option>
                   <option value="anime">anime</option>
+                  <option value="automotive-apparels">
+                    Automotive apparels
+                  </option>
                   <option value="tv-show">tv-show</option>
                   <option value="gym">gym</option>
                   <option value="matchy-matchy">matchy-matchy</option>

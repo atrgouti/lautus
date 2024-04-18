@@ -16,7 +16,7 @@ import { themeContext } from "./generalComponents/ThemeContext";
 function Home({ isFixed }) {
   const [loding, setIsLoading] = useState(false);
   const [musicalBands, setMusicalBands] = useState([]);
-  const [cartoon, setCartoon] = useState([]);
+  const [Automotive, setAutomotive] = useState([]);
   const [matchy, setMatchy] = useState([]);
   const [tvShow, setTvShow] = useState([]);
   const [gym, setGym] = useState([]);
@@ -25,7 +25,7 @@ function Home({ isFixed }) {
     async function getData() {
       let res = await apiLautusProducts("none", setIsLoading);
       setMusicalBands(res.filter((d) => d.category === "musical-bands"));
-      setCartoon(res.filter((d) => d.category === "cartoon"));
+      setAutomotive(res.filter((d) => d.category === "automotive-apparels"));
       setMatchy(res.filter((d) => d.category === "matchy-matchy"));
       setTvShow(res.filter((d) => d.category === "tv-show"));
       setGym(res.filter((d) => d.category === "gym"));
@@ -85,8 +85,8 @@ function Home({ isFixed }) {
           )}
 
           <ProductsCarousel
-            header={"Cartoon Collections"}
-            data={cartoon}
+            header={"Automotive apparels"}
+            data={Automotive}
             bg={"black"}
           />
         </div>

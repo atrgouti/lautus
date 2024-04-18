@@ -44,7 +44,9 @@ function Navbar({ isFixed }) {
           <Link to={"/"}>Home</Link>
           <Link to={"/collection/anime"}>Anime</Link>
           <Link to={"/collection/musical-bands"}>Musical Bands</Link>
-          <Link to={"/collection/cartoon"}>Cartoon</Link>
+          <Link to={"/collection/automotive-apparels"}>
+            Automotive apparels
+          </Link>
           <Link to={"/collection/matchy-matchy"}>Matchy Matchy</Link>
           <Link to={"/collection/tv-show"}>TV Show</Link>
           <Link to={"/collection/gym"}>GYM</Link>

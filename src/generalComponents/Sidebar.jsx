@@ -71,10 +71,10 @@ function Sidebar() {
           </li>
           <li>
             <Link
-              to={"/collection/cartoon"}
+              to={"/collection/automotive-apparels"}
               onClick={() => setActiveSide(false)}
             >
-              Cartoon
+              Automotive apparels
             </Link>
           </li>
           <li>
