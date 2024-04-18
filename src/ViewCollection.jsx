@@ -24,8 +24,6 @@ function ViewCollection({ isFixed }) {
   const [notNicessery, setNotNicessery] = useState(false);
   const [dataLength, setDataLength] = useState(0);
 
-  console.log(dataLength);
-
   useEffect(() => {
     if (offset === 0) {
       async function getData() {

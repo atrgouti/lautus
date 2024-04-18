@@ -3,12 +3,14 @@ import supabase from "../src/api/supabase";
 import withAuthCheck from "./withAuthCheck";
 import styles from "./dashboard.module.css";
 import { Link } from "react-router-dom";
-import { apiLautusProducts } from "./api/apiLautusProducts";
+// import { apiLautusProducts } from "./api/apiLautusProducts";
+import { apiLautusProductsPagination } from "./api/apiLautusProductsPagination";
 import loadingCircle from "/icons8-loading-circle.gif";
 
 function Dashboard() {
   const [mydata, setMyData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [offset, setOffSet] = useState(0);
 
   //handle sign out
   const handleSignOut = async () => {
@@ -24,13 +26,54 @@ function Dashboard() {
     }
   };
   //get data
+  // useEffect(() => {
+  //   async function getData() {
+  //     let res = await apiLautusProducts("none", setLoading);
+  //     setMyData(res);
+  //   }
+  //   getData();
+  // }, []);
   useEffect(() => {
-    async function getData() {
-      let res = await apiLautusProducts("none", setLoading);
-      setMyData(res);
+    if (offset === 0) {
+      async function getData() {
+        let res = await apiLautusProductsPagination(
+          "none",
+          setLoading,
+          false,
+          "default",
+          offset
+        );
+        setMyData(res);
+      }
+      getData();
     }
-    getData();
   }, []);
+  useEffect(() => {
+    if (offset > 0) {
+      async function getData() {
+        try {
+          const newData = await apiLautusProductsPagination(
+            "none",
+            setLoading,
+            false,
+            "default",
+            offset,
+            5
+          );
+
+          setMyData((prevData) => [...prevData, ...newData]); // Append only new items to myData
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      getData();
+    }
+  }, [offset]); // Include offset as a dependency
+
+  const handleShowMore = () => {
+    setOffSet((prevOffset) => prevOffset + 5); // Increment offset by 10
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -142,6 +185,27 @@ function Dashboard() {
           </table>
         </div>
       )}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <button
+          style={{
+            backgroundColor: "black",
+            color: "white",
+            padding: "10px 20px",
+            margin: "20px",
+            border: "1px solid black",
+            cursor: "pointer",
+          }}
+          onClick={() => handleShowMore()}
+        >
+          Show more
+        </button>
+      </div>
     </div>
   );
 }
