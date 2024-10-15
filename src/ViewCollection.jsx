@@ -50,7 +50,7 @@ function ViewCollection({ isFixed }) {
             animeName,
             sortBy,
             offset,
-            10
+            5
           );
 
           setMyData((prevData) => [...prevData, ...newData]); // Append only new items to myData
@@ -78,7 +78,7 @@ function ViewCollection({ isFixed }) {
   }, [collectionName, sortBy, animeName]);
 
   const handleShowMore = () => {
-    setOffSet((prevOffset) => prevOffset + 10); // Increment offset by 10
+    setOffSet((prevOffset) => prevOffset + 5); // Increment offset by 10
   };
 
   useEffect(function () {
